@@ -35,7 +35,7 @@ h1{
 
 form{
     width: 100%;
-    height: 715px;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
