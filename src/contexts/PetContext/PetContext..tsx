@@ -63,23 +63,32 @@ const PetProvider = ({ children }: IPetProps) => {
 
   function registerPet(
     formData: IRegisterPetsFunction,
-    { idPet, token }: IListPetFuction
+    { idPet }: IListPetFuction
   ) {
+    const token = localStorage.getItem("@TOKEN");
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     api.post<IRegisterPetsResponse>("/pets", formData).then((response) => {
       return response;
     });
   }
-  function editPet(formData: IEditPet, { idPet, token }: IListPetFuction) {
+  function editPet(formData: IEditPet, { idPet }: IListPetFuction) {
+    const token = localStorage.getItem("@TOKEN");
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     api.patch(`/pets/${idPet}`, formData).then((response) => {
       return response;
     });
   }
-  function listPetUser({ idUser, token }: IListPetFuction) {
+  function listPetUser({ idUser }: IListPetFuction) {
     api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
       setListPets(response.data);
     });
   }
-  function deletePet({ idPet, token }: IListPetFuction) {
+  function deletePet({ idPet }: IListPetFuction) {
+    const token = localStorage.getItem("@TOKEN");
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     api.delete(`/pets/${idPet}`).then((response) => {
       return response;
     });
