@@ -88,12 +88,12 @@ const UserProvider = ({ children }: IUserProps) => {
   // Requisição de login:
 
   function loginUser(formData: ILoginFunction): void {
-    api.post<ILoginResponse>("/sessions", formData).then((response) => {
+    api.post<ILoginResponse>("/login", formData).then((response) => {
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.accessToken);
       localStorage.setItem("@USERID", response.data.user.id);
       setTimeout(() => navigate("/dashboard"), 3000);
-    });
+    }).catch(err => console.log(err));
   }
 
   // Requisição para listar usuários - Clínica

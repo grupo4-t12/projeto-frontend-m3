@@ -13,4 +13,11 @@ export default createGlobalStyle`
 
     --input-font: 'Inter';
   }
+
+  form{
+    background-color: var(--color-primary);
+    font-family: var(--input-font);
+    color: var(--white);
+  }
+
 `;
