@@ -12,33 +12,49 @@ interface IPetContext {
   listPets: IPet[] | [];
   setListPets: (data: IPet[] | []) => void;
 }
+
+// Interface para tipar as props:
+
+interface IPetProps {
+  children: ReactNode;
+}
+
+// Tipando a função registerPet:
+
 export interface IRegisterPetsFunction {
   name: String;
   animal: String;
   userId: Number;
 }
+
+// Interface para a resposta da requisição de cadastro:
+
 interface IRegisterPetsResponse {
   name: String;
   animal: String;
   userId: Number;
   id: Number;
 }
+
+// Tipando a função editPet:
+
 export interface IEditPet {
   name: String;
   animal: String;
 }
+
+// Tipando a response da função editPet
 interface IPet {
   name: String;
   animal: String;
   id: Number;
 }
+
+// Tipando os parâmetros passados as functons
 interface IListPetFuction {
   idUser?: Number;
   idPet: Number;
   token: String;
-}
-interface IPetProps {
-  children: ReactNode;
 }
 export const PetContext = createContext<IPetContext>({} as IPetContext);
 
