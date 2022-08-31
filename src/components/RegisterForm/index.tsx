@@ -1,9 +1,9 @@
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import logoImage from "../../assets/img/logo.svg";
+// import logoImage from "../../assets/img/logo.svg";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -46,12 +46,11 @@ function RegisterForm() {
   return (
     <>
       <DivForm>
-        
         <form onSubmit={handleSubmit(registerUser)}>
           <div className="container">
             <div className="header">
               <h1>SEU PET</h1>
-              <img src={logoImage} alt="logo-patas" />
+              {/* <img src={logoImage} alt="logo-patas" /> */}
             </div>
             <div className="content">
               <div className="input-icons">

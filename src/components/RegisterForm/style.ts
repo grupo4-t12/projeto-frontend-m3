@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const DivForm = styled.form`
+export const DivForm = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff6f9; 
+  background-color: #fff6f9;
 
   form {
     width: 90%;
@@ -16,14 +16,14 @@ export const DivForm = styled.form`
     justify-content: center;
     border: none;
     border-radius: 10px;
-    background-color: #ff70a5; 
+    background-color: #ff70a5;
   }
 
   @media (min-width: 600px) {
-    form{
-        width: 510px;
-        height: 580px;
-      }
+    form {
+      width: 510px;
+      height: 580px;
+    }
   }
 
   .header {
@@ -31,13 +31,12 @@ export const DivForm = styled.form`
     justify-content: center;
     align-items: center;
     gap: 1rem;
-
   }
 
   .header > h1 {
     margin: 0 0 21px;
     font-size: 48px;
-    color: #fff6f9; 
+    color: #fff6f9;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
@@ -58,7 +57,7 @@ export const DivForm = styled.form`
     align-items: center;
     margin-top: 20px;
     border-radius: 4px;
-    background-color: #d9d9d9; 
+    background-color: #d9d9d9;
   }
 
   .content > .input-icons > .icon {
@@ -73,7 +72,7 @@ export const DivForm = styled.form`
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    color: #5b5b5b; 
+    color: #5b5b5b;
     background-color: transparent;
   }
 
@@ -91,7 +90,7 @@ export const DivForm = styled.form`
     border-radius: 4px;
     font-size: 24px;
     font-weight: 800;
-    color: #ff70a5; 
-    background-color: #fff6f9; 
+    color: #ff70a5;
+    background-color: #fff6f9;
   }
 `;
