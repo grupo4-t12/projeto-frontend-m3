@@ -9,6 +9,10 @@ interface IUserContext {
   setUser: (data: ILoginUser | null) => void;
   registerUser: (data: IRegisterFunction) => void;
   loginUser: (data: ILoginFunction) => void;
+  listUsers: IUsersList | [];
+  setListUsers: (data: IUsersList | []) => void;
+  listUsersClinic: () => void;
+  token: String | null;
 }
 
 // Interface para tipar as props:
@@ -59,11 +63,19 @@ interface ILoginUser {
   id: string;
 }
 
+// Interface para a resposta da lista de usuários:
+
+interface IUsersList {
+  users: ILoginUser[];
+}
+
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProps) => {
   const [user, setUser] = useState<ILoginUser | null>(null);
+  const [listUsers, setListUsers] = useState<IUsersList | []>([]);
   let navigate = useNavigate();
+  const token = localStorage.getItem("@TOKEN");
 
   // Requisição de cadastro:
 
@@ -84,6 +96,13 @@ const UserProvider = ({ children }: IUserProps) => {
     }).catch(err => console.log(err));
   }
 
+  // Requisição para listar usuários - Clínica
+
+  function listUsersClinic() {
+    api.get<IUsersList>("/users").then((response) => {
+      setListUsers(response.data);
+    });
+  }
   return (
     <UserContext.Provider
       value={{
@@ -91,6 +110,10 @@ const UserProvider = ({ children }: IUserProps) => {
         setUser,
         registerUser,
         loginUser,
+        listUsers,
+        setListUsers,
+        listUsersClinic,
+        token,
       }}
     >
       {children}
