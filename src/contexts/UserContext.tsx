@@ -83,7 +83,7 @@ const UserProvider = ({ children }: IUserProps) => {
     api
       .post<IRegisterResponse>("/register", formData)
       .then(() => {
-        // setTimeout(() => navigate("/login"), 3000);
+        setTimeout(() => navigate("/login"), 3000);
       })
       .catch((err) => console.log(err));
   }

@@ -81,7 +81,7 @@ export const DivForm = styled.div`
     outline: 0;
   }
 
-  .btnRegister {
+  button {
     width: 182px;
     height: 54px;
     margin-top: 20px;
@@ -92,5 +92,12 @@ export const DivForm = styled.div`
     font-weight: 800;
     color: #ff70a5;
     background-color: #fff6f9;
+  }
+
+  #login-button {
+    width: 110px;
+    height: 30px;
+    font-size: 15px;
+    margin-left: 5px;
   }
 `;

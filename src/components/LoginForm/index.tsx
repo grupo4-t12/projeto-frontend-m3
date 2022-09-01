@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { Section } from "./styles";
 
+import { useNavigate } from "react-router-dom";
+
 // Interface para formulário de Login:
 export interface UserData {
   email: string;
@@ -12,8 +14,16 @@ export interface UserData {
 }
 
 function LoginForm() {
+  let navigate = useNavigate();
+
   // Função de Login:
   const { loginUser } = useContext(UserContext);
+
+  // Função que redireciona para a página de cadastro":
+
+  function returnRegister(): void {
+    navigate("/register");
+  }
 
   // Validadores de input:
   const formSchema = yup.object().shape({
@@ -49,7 +59,12 @@ function LoginForm() {
           <span>{errors.password?.message}</span>
         </div>
         <button type="submit">Login</button>
-        <p>Não possui uma conta? Cadastre-se </p>
+        <p>
+          Não possui uma conta?
+          <button type="button" id="register-button" onClick={returnRegister}>
+            Cadastre-se
+          </button>
+        </p>
       </form>
     </Section>
   );

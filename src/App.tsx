@@ -1,22 +1,20 @@
 import "./App.css";
-import Register from "./components/RegisterForm";
-import UserProvider from "./contexts/UserContext";
+
+import MainRoutes from "./routes";
+import Global from "./styles/global";
 
 function App() {
   return (
     <>
-      <UserProvider>
-        <Register />
-      </UserProvider>
+      <div className="App">
+        <Global />
+        <MainRoutes />
+      </div>
     </>
   );
 }
+
 // import { Route, Routes } from "react-router-dom";
-// import "./App.css";
-// import UserProvider from "./contexts/UserContext";
-// import Login from "./pages/Login"
-// import Global from "./styles/global";
-// import Dashboard from "./pages/Dashboard";
 
 // function App() {
 //   return (
