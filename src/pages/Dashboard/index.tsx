@@ -1,12 +1,27 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
-function dashboard() {
-    return (
-        <>
-            <Link to="/"><button>Logout</button></Link>
-            <p>Bem-vindo!!!</p>
-        </>
-    )
+function Dashboard() {
+  let navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
+
+  // Função para o botão de logout:
+
+  function logout(): void {
+    setUser(null);
+    localStorage.clear();
+    navigate("/login");
+  }
+
+  return (
+    <>
+      <button type="button" onClick={logout}>
+        Logout
+      </button>
+      <p>Bem-vindo!!!</p>
+    </>
+  );
 }
 
-export default dashboard
+export default Dashboard;

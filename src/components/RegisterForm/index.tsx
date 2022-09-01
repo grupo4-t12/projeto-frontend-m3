@@ -9,6 +9,8 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { DivForm } from "./style";
 
+import { useNavigate } from "react-router-dom";
+
 export interface RegisterData {
   name: string;
   email: string;
@@ -17,7 +19,15 @@ export interface RegisterData {
 }
 
 function RegisterForm() {
+  let navigate = useNavigate();
+
   const { registerUser } = useContext(UserContext);
+
+  // Função que redireciona para a página de login:
+
+  function returnLogin(): void {
+    navigate("/login");
+  }
 
   const schema = yup.object({
     name: yup.string().required("Nome de usuário obrigatório"),
@@ -49,7 +59,7 @@ function RegisterForm() {
         <form onSubmit={handleSubmit(registerUser)}>
           <div className="container">
             <div className="header">
-              <h1>SEU PET</h1>
+              <h1>SEU PET 🐾</h1>
               {/* <img src={logoImage} alt="logo-patas" /> */}
             </div>
             <div className="content">
@@ -93,9 +103,13 @@ function RegisterForm() {
                 <small>{errors.confirmPassword?.message}</small>
               </div>
 
-              <button className="btnRegister" type="submit">
-                Cadastrar
-              </button>
+              <button type="submit">Cadastrar</button>
+              <p>
+                Já é nosso cliente?
+                <button type="button" id="login-button" onClick={returnLogin}>
+                  Fazer Login
+                </button>
+              </p>
             </div>
           </div>
         </form>

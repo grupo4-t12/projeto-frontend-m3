@@ -1,14 +1,14 @@
 import { createContext, useState, ReactNode } from "react";
-import api from "../../services/index";
+import api from "../services/index";
 
 interface IPetContext {
   registerPet: (
     data: IRegisterPetsFunction,
-    { idUser, token }: IListPetFuction
+    { idUser }: IListPetFuction
   ) => void;
-  editPet: (data: IEditPet, { idPet, token }: IListPetFuction) => void;
-  listPetUser: ({ idPet, token }: IListPetFuction) => void;
-  deletePet: ({ idPet, token }: IListPetFuction) => void;
+  editPet: (data: IEditPet, { idPet }: IListPetFuction) => void;
+  listPetUser: ({ idUser }: IListPetFuction) => void;
+  deletePet: ({ idPet }: IListPetFuction) => void;
   listPets: IPet[] | [];
   setListPets: (data: IPet[] | []) => void;
 }
@@ -22,39 +22,39 @@ interface IPetProps {
 // Tipando a função registerPet:
 
 export interface IRegisterPetsFunction {
-  name: String;
-  animal: String;
-  userId: Number;
+  name: string;
+  animal: string;
+  userId: string;
 }
 
 // Interface para a resposta da requisição de cadastro:
 
 interface IRegisterPetsResponse {
-  name: String;
-  animal: String;
-  userId: Number;
-  id: Number;
+  name: string;
+  animal: string;
+  userId: string;
+  id: string;
 }
 
 // Tipando a função editPet:
 
 export interface IEditPet {
-  name: String;
-  animal: String;
+  name: string;
+  animal: string;
 }
 
 // Tipando a response da função editPet
 interface IPet {
-  name: String;
-  animal: String;
-  id: Number;
+  name: string;
+  animal: string;
+  id: string;
 }
 
 // Tipando os parâmetros passados as functons
 interface IListPetFuction {
-  idUser?: Number;
-  idPet: Number;
-  token: String;
+  idUser?: string;
+  idPet: string;
+  token: string;
 }
 export const PetContext = createContext<IPetContext>({} as IPetContext);
 
@@ -62,8 +62,8 @@ const PetProvider = ({ children }: IPetProps) => {
   const [listPets, setListPets] = useState<IPet[]>([]);
 
   function registerPet(
-    formData: IRegisterPetsFunction,
-    { idPet }: IListPetFuction
+    formData: IRegisterPetsFunction
+    // { idPet }: IListPetFuction
   ) {
     const token = localStorage.getItem("@TOKEN");
 
