@@ -37,6 +37,7 @@ export const ModalBoxEdit = styled.div`
 
       border: none;
       color: var(--fail);
+      background: inherit;
     }
   }
 
@@ -61,15 +62,16 @@ export const ModalBoxEdit = styled.div`
       height: 51px;
       padding: 10px;
 
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
+
       border: none;
       border-radius: 4px;
       background: var(--grey-2);
     }
 
     input::placeholder {
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 22px;
       color: var(--grey-1);
     }
 

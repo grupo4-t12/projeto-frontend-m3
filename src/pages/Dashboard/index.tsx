@@ -13,7 +13,7 @@ import { Container, LinkButton, Main } from "./styles";
 
 function Dashboard() {
   const { setUser } = useContext(UserContext);
-  const { listPets, editModal, setEditModal, deleteModal, setDeleteModal } =
+  const { editModal, setEditModal, deleteModal, setDeleteModal } =
     useContext(PetContext);
 
   function handleClick() {
@@ -47,7 +47,7 @@ function Dashboard() {
           </div>
           <div className="pet-data">
             {/* {listPets.map((pet, index) => (
-              <div key={index}>
+              <div className="data" key={index}>
                 <p>{pet.name}</p>
                 <p>{pet.animal}</p>
                 <div className="buttons">
@@ -59,6 +59,17 @@ function Dashboard() {
                 </div>
               </div>
             ))} */}
+            <div className="data">
+              <p>Thor</p>
+              <p>Cachorro</p>
+              <div className="buttons">
+                <TiEdit onClick={() => setEditModal(true)} size={28} />
+                <IoTrashOutline
+                  onClick={() => setDeleteModal(true)}
+                  size={23}
+                />
+              </div>
+            </div>
             <div className="data">
               <p>Thor</p>
               <p>Cachorro</p>
@@ -85,3 +96,6 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+//Email: matheus@mail.com
+//Password: Senh@123
