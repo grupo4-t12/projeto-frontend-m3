@@ -31,6 +31,10 @@ export const Section = styled.section`
     line-height: 48px;
 
     cursor: default;
+
+    svg {
+      margin-left: 7px;
+    }
   }
 
   form {
@@ -130,12 +134,5 @@ export const Section = styled.section`
     line-height: 29px;
 
     cursor: pointer;
-  }
-
-  #register-button {
-    width: 110px;
-    height: 30px;
-    font-size: 15px;
-    margin-left: 5px;
   }
 `;
