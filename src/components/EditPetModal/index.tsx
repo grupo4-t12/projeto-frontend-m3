@@ -1,9 +1,16 @@
 import { useContext } from "react";
-import { PetContext } from "../../contexts/PetContext/PetContext.";
+import { useForm } from "react-hook-form";
+import { IPet, PetContext } from "../../contexts/PetContext";
 import { ModalBoxEdit, ModalContainer } from "./styles";
 
-const EditPetModal = () => {
-  const { setEditModal } = useContext(PetContext);
+interface IEditPetModalProps {
+  name: string;
+  animal: string;
+}
+
+const EditPetModal = ({ name, animal }: IEditPetModalProps) => {
+  const { editPet, setEditModal } = useContext(PetContext);
+  const { register, handleSubmit } = useForm<IPet>();
 
   return (
     <ModalContainer>
@@ -13,14 +20,24 @@ const EditPetModal = () => {
           <button onClick={() => setEditModal(false)}>X</button>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit(editPet)}>
           <label htmlFor="name">Nome:</label>
-          <input id="name" type="text" placeholder="Thor" />
+          <input
+            id="name"
+            type="text"
+            defaultValue={name}
+            {...register("name")}
+          />
 
           <label htmlFor="animal">Animal:</label>
-          <input id="animal" type="text" placeholder="Cachorro" />
+          <input
+            id="animal"
+            type="text"
+            defaultValue={animal}
+            {...register("animal")}
+          />
 
-          <button>Editar</button>
+          <button type="submit">Editar</button>
         </form>
       </ModalBoxEdit>
     </ModalContainer>

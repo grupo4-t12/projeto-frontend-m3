@@ -15,7 +15,10 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalBoxEdit = styled.div`
-  width: 350px;
+  max-width: 350px;
+  width: 100%;
+
+  margin: 1rem;
   padding: 1.5rem;
   border-radius: 10px;
 
@@ -58,7 +61,7 @@ export const ModalBoxEdit = styled.div`
     }
 
     input {
-      width: 300px;
+      width: 100%;
       height: 51px;
       padding: 10px;
 

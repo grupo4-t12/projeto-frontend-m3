@@ -5,22 +5,21 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import api from "../../services/index";
+
+import api from "../services";
 
 interface IPetContext {
   registerPet: (
     data: IRegisterPetsFunction,
-    { idUser, token }: IListPetFuction
+    { idUser }: IListPetFuction
   ) => void;
-  editPet: (data: IEditPet, { idPet, token }: IListPetFuction) => void;
-  listPetUser: ({ idPet, token }: IListPetFuction) => void;
-  deletePet: ({ idPet, token }: IListPetFuction) => void;
-  listPets: IPet[] | [];
-  setListPets: (data: IPet[] | []) => void;
+  editPet(formData: IPet): void;
+  deletePet: () => void;
   editModal: boolean;
   deleteModal: boolean;
   setEditModal: Dispatch<SetStateAction<boolean>>;
   setDeleteModal: Dispatch<SetStateAction<boolean>>;
+  setPetId: Dispatch<SetStateAction<string>>;
 }
 
 // Interface para tipar as props:
@@ -32,50 +31,50 @@ interface IPetProps {
 // Tipando a função registerPet:
 
 export interface IRegisterPetsFunction {
-  name: String;
-  animal: String;
-  userId: Number;
+  name: string;
+  animal: string;
+  userId: string;
 }
 
 // Interface para a resposta da requisição de cadastro:
 
 interface IRegisterPetsResponse {
-  name: String;
-  animal: String;
-  userId: Number;
-  id: Number;
+  name: string;
+  animal: string;
+  userId: string;
+  id: string;
 }
 
 // Tipando a função editPet:
 
 export interface IEditPet {
-  name: String;
-  animal: String;
+  name: string;
+  animal: string;
 }
 
 // Tipando a response da função editPet
-interface IPet {
-  name: String;
-  animal: String;
-  id: Number;
+export interface IPet {
+  name: string;
+  animal: string;
+  id: string;
 }
 
 // Tipando os parâmetros passados as functons
 interface IListPetFuction {
-  idUser?: Number;
-  idPet: Number;
-  token: String;
+  idUser?: string;
+  idPet: string;
+  token: string;
 }
 export const PetContext = createContext<IPetContext>({} as IPetContext);
 
 const PetProvider = ({ children }: IPetProps) => {
-  const [listPets, setListPets] = useState<IPet[]>([]);
+  const [petId, setPetId] = useState("");
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
   function registerPet(
-    formData: IRegisterPetsFunction,
-    { idPet }: IListPetFuction
+    formData: IRegisterPetsFunction
+    // { idPet }: IListPetFuction
   ) {
     const token = localStorage.getItem("@TOKEN");
 
@@ -84,26 +83,25 @@ const PetProvider = ({ children }: IPetProps) => {
       return response;
     });
   }
-  function editPet(formData: IEditPet, { idPet }: IListPetFuction) {
+  function editPet(formData: IPet) {
     const token = localStorage.getItem("@TOKEN");
 
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    api.patch(`/pets/${idPet}`, formData).then((response) => {
-      return response;
-    });
+    api
+      .patch(`/pets/${petId}`, formData)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => console.log(err));
 
     setEditModal(false);
   }
-  function listPetUser({ idUser }: IListPetFuction) {
-    api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
-      setListPets(response.data);
-    });
-  }
-  function deletePet({ idPet }: IListPetFuction) {
+
+  function deletePet() {
     const token = localStorage.getItem("@TOKEN");
 
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    api.delete(`/pets/${idPet}`).then((response) => {
+    api.delete(`/pets/${petId}`).then((response) => {
       return response;
     });
 
@@ -112,16 +110,14 @@ const PetProvider = ({ children }: IPetProps) => {
   return (
     <PetContext.Provider
       value={{
-        listPets,
-        setListPets,
         registerPet,
         editPet,
-        listPetUser,
         deletePet,
         editModal,
         deleteModal,
         setEditModal,
         setDeleteModal,
+        setPetId,
       }}
     >
       {children}

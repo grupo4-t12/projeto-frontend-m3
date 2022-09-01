@@ -6,7 +6,10 @@ export const ModalBoxDelete = styled.div`
   align-items: flex-start;
   flex-direction: column;
 
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
+
+  margin: 1rem;
   padding: 1rem;
   border-radius: 10px;
 

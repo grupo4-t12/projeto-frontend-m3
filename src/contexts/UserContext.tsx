@@ -1,6 +1,7 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import api from "../services/index";
 import { useNavigate } from "react-router-dom";
+import { IPet } from "./PetContext";
 
 // Interface para tipar o contexto:
 
@@ -13,6 +14,7 @@ interface IUserContext {
   setListUsers: (data: IUsersList | []) => void;
   listUsersClinic: () => void;
   token: String | null;
+  listPets: IPet[] | [];
 }
 
 // Interface para tipar as props:
@@ -74,26 +76,35 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 const UserProvider = ({ children }: IUserProps) => {
   const [user, setUser] = useState<ILoginUser | null>(null);
   const [listUsers, setListUsers] = useState<IUsersList | []>([]);
+  const [listPets, setListPets] = useState<IPet[]>([]);
+
   let navigate = useNavigate();
   const token = localStorage.getItem("@TOKEN");
 
   // Requisição de cadastro:
 
   function registerUser(formData: IRegisterFunction): void {
-    api.post<IRegisterResponse>("/register", formData).then(() => {
-      setTimeout(() => navigate("/login"), 3000);
-    });
+    api
+      .post<IRegisterResponse>("/register", formData)
+      .then(() => {
+        setTimeout(() => navigate("/login"), 3000);
+      })
+      .catch((err) => console.log(err));
   }
 
   // Requisição de login:
 
   function loginUser(formData: ILoginFunction): void {
-    api.post<ILoginResponse>("/login", formData).then((response) => {
-      setUser(response.data.user);
-      localStorage.setItem("@TOKEN", response.data.accessToken);
-      localStorage.setItem("@USERID", response.data.user.id);
-      setTimeout(() => navigate("/dashboard"), 3000);
-    }).catch(err => console.log(err));
+    api
+      .post<ILoginResponse>("/login", formData)
+      .then((response) => {
+        setUser(response.data.user);
+        listPetUser(response.data.user.id);
+        localStorage.setItem("@TOKEN", response.data.accessToken);
+        localStorage.setItem("@USERID", response.data.user.id);
+        setTimeout(() => navigate("/dashboard"), 3000);
+      })
+      .catch((err) => console.log(err));
   }
 
   // Requisição para listar usuários - Clínica
@@ -103,6 +114,35 @@ const UserProvider = ({ children }: IUserProps) => {
       setListUsers(response.data);
     });
   }
+
+  // Requisição para listar pets
+
+  function listPetUser(idUser: string) {
+    api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
+      setListPets(response.data);
+    });
+  }
+
+  // Mantém a página do usuário atualizada
+
+  useEffect(() => {
+    function loadUser() {
+      const idUser = localStorage.getItem("@USERID");
+
+      if (token) {
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+        api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
+          setListPets(response.data);
+        });
+      } else {
+        localStorage.clear();
+      }
+    }
+
+    loadUser();
+  }, [listPets, token]);
+
   return (
     <UserContext.Provider
       value={{
@@ -114,6 +154,7 @@ const UserProvider = ({ children }: IUserProps) => {
         setListUsers,
         listUsersClinic,
         token,
+        listPets,
       }}
     >
       {children}
