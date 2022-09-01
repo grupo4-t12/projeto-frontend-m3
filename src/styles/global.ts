@@ -14,10 +14,29 @@ export default createGlobalStyle`
     --input-font: 'Inter';
   }
 
+  * {
+     margin:0;
+    padding: 0;
+    outline:0;
+    box-sizing: border-box;
+  }
+  
+  body,html {
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--input-font);
+
+    overflow-x: hidden;
+    background: var(--white);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
   form{
     background-color: var(--color-primary);
     font-family: var(--input-font);
     color: var(--white);
   }
-
 `;

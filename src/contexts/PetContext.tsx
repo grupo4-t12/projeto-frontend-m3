@@ -1,5 +1,12 @@
-import { createContext, useState, ReactNode } from "react";
-import api from "../services/index";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
+
+import api from "../services";
 
 interface IPetContext {
   registerPet: (
@@ -11,6 +18,10 @@ interface IPetContext {
   deletePet: ({ idPet }: IListPetFuction) => void;
   listPets: IPet[] | [];
   setListPets: (data: IPet[] | []) => void;
+  editModal: boolean;
+  deleteModal: boolean;
+  setEditModal: Dispatch<SetStateAction<boolean>>;
+  setDeleteModal: Dispatch<SetStateAction<boolean>>;
 }
 
 // Interface para tipar as props:
@@ -60,6 +71,8 @@ export const PetContext = createContext<IPetContext>({} as IPetContext);
 
 const PetProvider = ({ children }: IPetProps) => {
   const [listPets, setListPets] = useState<IPet[]>([]);
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   function registerPet(
     formData: IRegisterPetsFunction
@@ -79,6 +92,8 @@ const PetProvider = ({ children }: IPetProps) => {
     api.patch(`/pets/${idPet}`, formData).then((response) => {
       return response;
     });
+
+    setEditModal(false);
   }
   function listPetUser({ idUser }: IListPetFuction) {
     api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
@@ -92,6 +107,8 @@ const PetProvider = ({ children }: IPetProps) => {
     api.delete(`/pets/${idPet}`).then((response) => {
       return response;
     });
+
+    setDeleteModal(false);
   }
   return (
     <PetContext.Provider
@@ -102,6 +119,10 @@ const PetProvider = ({ children }: IPetProps) => {
         editPet,
         listPetUser,
         deletePet,
+        editModal,
+        deleteModal,
+        setEditModal,
+        setDeleteModal,
       }}
     >
       {children}
