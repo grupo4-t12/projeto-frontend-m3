@@ -11,7 +11,7 @@ import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
 
-function HistoryConsultClinic() {
+function HistoryConsult() {
   const { setUser, listPets } = useContext(UserContext);
   const { editModal, setEditModal, deleteModal, setDeleteModal, setPetId } =
     useContext(PetContext);
@@ -92,4 +92,4 @@ function HistoryConsultClinic() {
     </Container>
   );
 }
-export default HistoryConsultClinic;
+export default HistoryConsult;

@@ -10,6 +10,7 @@ import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
+import { Navigate } from "react-router-dom";
 
 function DashboardClinic() {
   const { setUser, listPets } = useContext(UserContext);
@@ -37,7 +38,13 @@ function DashboardClinic() {
       <Main>
         <div className="menu">
           <button>Nossos clientes</button>
-          <button>Histórico consultas</button>
+          <button
+            onClick={() => {
+              <Navigate to={"/history-consults"} />;
+            }}
+          >
+            Histórico consultas
+          </button>
           <button
             onClick={() => {
               window.open("https://calendly.com/axeellima/seupet-consulta");
