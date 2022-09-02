@@ -82,7 +82,7 @@ function DashboardClinic() {
           </div>
         </div>
         <aside>
-          <p>Acompanhe seu pet com a gente, Amar é cuidar!</p>
+          <p>Acompanhe seu pet com a gente, amar é cuidar!</p>
           <img src={petImage} alt="" />
           <span>Agende uma consulta</span>
         </aside>

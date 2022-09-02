@@ -7,7 +7,7 @@ function Dashboard() {
   const idUser = localStorage.getItem("@USERID");
 
   return token ? (
-    idUser === "9" ? (
+    idUser === "1" ? (
       <DashboardClinic />
     ) : (
       <DashboardClient />
@@ -19,5 +19,7 @@ function Dashboard() {
 
 export default Dashboard;
 
-//Email: matheus@mail.com
-//Password: Senh@123
+// Login do "dono da clínica":
+
+// Email: kenzinho@mail.com
+// Password: 123456
