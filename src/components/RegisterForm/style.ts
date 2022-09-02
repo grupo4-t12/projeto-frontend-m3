@@ -128,15 +128,6 @@ export const DivForm = styled.section`
     background-color: #fff6f9;
   }
 
-  button:hover {
-    border-radius: 50px;
-    transform: scale(1.1);
-    transition: all 0.5s;
-    transition: all 0.5s ease-in;
-    background-color: #76c2f4;
-    color: #fff6f9;
-  }
-
   #login-button {
     width: 110px;
     height: 30px;
