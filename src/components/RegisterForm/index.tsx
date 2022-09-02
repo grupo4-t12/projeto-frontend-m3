@@ -3,13 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
-// import logoImage from "../../assets/img/logo.svg";
+import logo from "../../assets/img/seuPetS.png";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { DivForm } from "./style";
 import { ToastContainer } from "react-toastify";
-import { IoPawSharp } from "react-icons/io5";
+// import { IoPawSharp } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
 
@@ -65,14 +65,16 @@ function RegisterForm() {
         <form onSubmit={handleSubmit(registerUser)}>
           <div className="container">
             <div className="header">
-              <h1>
-                SEU PET <IoPawSharp />
-              </h1>
-              {/* <img src={logoImage} alt="logo-patas" /> */}
+              <img
+                src={logo}
+                alt="logo-patas"
+                className="animate__animated animate__heartBeat"
+              />
             </div>
+
             <div className="content">
               <div className="input-icons">
-                <FaUser className="icon" color="#5b5b5b" />
+                <FaUser className="icon" color="#5b5b5b" size={45} />
                 <input
                   type="text"
                   placeholder="Usuário"
@@ -82,7 +84,7 @@ function RegisterForm() {
               <span>{errors.name?.message}</span>
 
               <div className="input-icons">
-                <MdEmail className="icon" color="#5b5b5b" />
+                <MdEmail className="icon" color="#5b5b5b" size={45} />
                 <input
                   type="email"
                   placeholder="E-mail"
@@ -92,7 +94,11 @@ function RegisterForm() {
               <span>{errors.email?.message}</span>
 
               <div className="input-icons">
-                <RiLockPasswordFill className="icon" color="#5b5b5b" />
+                <RiLockPasswordFill
+                  className="icon"
+                  color="#5b5b5b"
+                  size={45}
+                />
                 <input
                   type="password"
                   placeholder="Senha"
@@ -102,7 +108,11 @@ function RegisterForm() {
               <span>{errors.password?.message}</span>
 
               <div className="input-icons">
-                <RiLockPasswordFill className="icon" color="#5b5b5b" />
+                <RiLockPasswordFill
+                  className="icon"
+                  color="#5b5b5b"
+                  size={45}
+                />
                 <input
                   type="password"
                   placeholder="Confirme a senha"
