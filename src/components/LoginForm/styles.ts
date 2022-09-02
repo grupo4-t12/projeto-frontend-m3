@@ -15,7 +15,7 @@ export const Section = styled.section`
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     margin-bottom: 40px;
-    margin-top: 0px;
+    margin-top: 30px;
 
     width: 245px;
     height: 55px;
