@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TiEdit } from "react-icons/ti";
 import { IoLogOutSharp, IoTrashOutline, IoPawSharp } from "react-icons/io5";
 
@@ -10,18 +10,24 @@ import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
+import { Navigate } from "react-router-dom";
 
 function Dashboard() {
-  const { setUser } = useContext(UserContext);
-  const { editModal, setEditModal, deleteModal, setDeleteModal } =
+  const { setUser, listPets } = useContext(UserContext);
+  const { editModal, setEditModal, deleteModal, setDeleteModal, setPetId } =
     useContext(PetContext);
+
+  const [name, setName] = useState("");
+  const [animal, setAnimal] = useState("");
+
+  const token = localStorage.getItem("@TOKEN");
 
   function handleClick() {
     localStorage.clear();
     setUser(null);
   }
 
-  return (
+  return token ? (
     <Container>
       <header>
         <h1>
@@ -46,30 +52,30 @@ function Dashboard() {
             <p>Editar:</p>
           </div>
           <div className="pet-data">
-            {/* {listPets.map((pet, index) => (
-              <div key={index}>
+            {listPets.map((pet) => (
+              <div className="data" key={pet.id}>
                 <p>{pet.name}</p>
                 <p>{pet.animal}</p>
                 <div className="buttons">
-                  <TiEdit onClick={() => setEditModal(true)} size={28} />
+                  <TiEdit
+                    onClick={() => {
+                      setPetId(pet.id);
+                      setName(pet.name);
+                      setAnimal(pet.animal);
+                      setEditModal(true);
+                    }}
+                    size={28}
+                  />
                   <IoTrashOutline
-                    onClick={() => setDeleteModal(true)}
+                    onClick={() => {
+                      setPetId(pet.id);
+                      setDeleteModal(true);
+                    }}
                     size={23}
                   />
                 </div>
               </div>
-            ))} */}
-            <div className="data">
-              <p>Thor</p>
-              <p>Cachorro</p>
-              <div className="buttons">
-                <TiEdit onClick={() => setEditModal(true)} size={28} />
-                <IoTrashOutline
-                  onClick={() => setDeleteModal(true)}
-                  size={23}
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <aside>
@@ -78,10 +84,15 @@ function Dashboard() {
           <span>Agende uma consulta</span>
         </aside>
       </Main>
-      {editModal && <EditPetModal />}
+      {editModal && <EditPetModal name={name} animal={animal} />}
       {deleteModal && <DeletePetModal />}
     </Container>
+  ) : (
+    <Navigate to={"/login"} />
   );
 }
 
 export default Dashboard;
+
+//Email: matheus@mail.com
+//Password: Senh@123

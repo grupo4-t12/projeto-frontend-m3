@@ -13,15 +13,13 @@ interface IPetContext {
     data: IRegisterPetsFunction,
     { idUser }: IListPetFuction
   ) => void;
-  editPet: (data: IEditPet, { idPet }: IListPetFuction) => void;
-  listPetUser: ({ idUser }: IListPetFuction) => void;
-  deletePet: ({ idPet }: IListPetFuction) => void;
-  listPets: IPet[] | [];
-  setListPets: (data: IPet[] | []) => void;
+  editPet(formData: IPet): void;
+  deletePet: () => void;
   editModal: boolean;
   deleteModal: boolean;
   setEditModal: Dispatch<SetStateAction<boolean>>;
   setDeleteModal: Dispatch<SetStateAction<boolean>>;
+  setPetId: Dispatch<SetStateAction<string>>;
 }
 
 // Interface para tipar as props:
@@ -55,7 +53,7 @@ export interface IEditPet {
 }
 
 // Tipando a response da função editPet
-interface IPet {
+export interface IPet {
   name: string;
   animal: string;
   id: string;
@@ -70,7 +68,7 @@ interface IListPetFuction {
 export const PetContext = createContext<IPetContext>({} as IPetContext);
 
 const PetProvider = ({ children }: IPetProps) => {
-  const [listPets, setListPets] = useState<IPet[]>([]);
+  const [petId, setPetId] = useState("");
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
@@ -85,26 +83,25 @@ const PetProvider = ({ children }: IPetProps) => {
       return response;
     });
   }
-  function editPet(formData: IEditPet, { idPet }: IListPetFuction) {
+  function editPet(formData: IPet) {
     const token = localStorage.getItem("@TOKEN");
 
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    api.patch(`/pets/${idPet}`, formData).then((response) => {
-      return response;
-    });
+    api
+      .patch(`/pets/${petId}`, formData)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => console.log(err));
 
     setEditModal(false);
   }
-  function listPetUser({ idUser }: IListPetFuction) {
-    api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
-      setListPets(response.data);
-    });
-  }
-  function deletePet({ idPet }: IListPetFuction) {
+
+  function deletePet() {
     const token = localStorage.getItem("@TOKEN");
 
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    api.delete(`/pets/${idPet}`).then((response) => {
+    api.delete(`/pets/${petId}`).then((response) => {
       return response;
     });
 
@@ -113,16 +110,14 @@ const PetProvider = ({ children }: IPetProps) => {
   return (
     <PetContext.Provider
       value={{
-        listPets,
-        setListPets,
         registerPet,
         editPet,
-        listPetUser,
         deletePet,
         editModal,
         deleteModal,
         setEditModal,
         setDeleteModal,
+        setPetId,
       }}
     >
       {children}

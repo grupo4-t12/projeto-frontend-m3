@@ -78,7 +78,6 @@ export const LinkButton = styled(Link)`
 export const Main = styled.main`
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
 
@@ -86,7 +85,6 @@ export const Main = styled.main`
     display: flex;
     gap: 3px;
 
-    width: 100%;
     padding: 3px 5px;
     overflow: auto;
 
@@ -98,6 +96,7 @@ export const Main = styled.main`
 
       height: 30px;
       padding: 0px 1rem;
+      white-space: nowrap;
 
       color: #ffff;
       background: var(--color-primary);
@@ -174,6 +173,36 @@ export const Main = styled.main`
 
       p {
         font-size: 16px;
+      }
+    }
+  }
+
+  @media (min-width: 1203px) {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+
+    .menu {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+
+      width: 238px;
+      padding: 1.3rem 0.5rem;
+
+      border-radius: 0px 10px 10px 0px;
+      background: var(--color-primary);
+
+      button {
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      button:hover {
+        text-decoration: underline;
+        background: inherit;
       }
     }
   }

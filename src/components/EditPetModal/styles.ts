@@ -15,7 +15,10 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalBoxEdit = styled.div`
-  width: 350px;
+  max-width: 350px;
+  width: 100%;
+
+  margin: 1rem;
   padding: 1.5rem;
   border-radius: 10px;
 
@@ -37,6 +40,7 @@ export const ModalBoxEdit = styled.div`
 
       border: none;
       color: var(--fail);
+      background: inherit;
     }
   }
 
@@ -57,9 +61,13 @@ export const ModalBoxEdit = styled.div`
     }
 
     input {
-      width: 300px;
+      width: 100%;
       height: 51px;
       padding: 10px;
+
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
 
       border: none;
       border-radius: 4px;
@@ -67,9 +75,6 @@ export const ModalBoxEdit = styled.div`
     }
 
     input::placeholder {
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 22px;
       color: var(--grey-1);
     }
 

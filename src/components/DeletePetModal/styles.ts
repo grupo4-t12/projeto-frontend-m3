@@ -7,6 +7,7 @@ export const ModalBoxDelete = styled.div`
   flex-direction: column;
 
   width: 350px;
+  margin: 0.5rem;
   padding: 1rem;
   border-radius: 10px;
 
@@ -19,12 +20,14 @@ export const ModalBoxDelete = styled.div`
 
   div {
     display: flex;
-    gap: 14px;
+    justify-content: space-between;
+
+    width: 100%;
 
     button {
-      width: 100px;
       height: 51px;
       margin-top: 5px;
+      padding: 0px 1.1rem;
 
       font-weight: 700;
       font-size: 16px;
@@ -38,8 +41,8 @@ export const ModalBoxDelete = styled.div`
     }
 
     .delete-button {
-      width: 200px;
       height: 51px;
+      margin-right: 5px;
 
       font-weight: 700;
       font-size: 16px;

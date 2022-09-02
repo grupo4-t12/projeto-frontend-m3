@@ -100,4 +100,19 @@ export const DivForm = styled.div`
     font-size: 15px;
     margin-left: 5px;
   }
+
+  span {
+    color: #2d2d2d;
+    width: 210px;
+    height: 10px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+
+    text-align: left;
+    margin-left: -58px;
+    margin-top: 2px;
+  }
 `;
