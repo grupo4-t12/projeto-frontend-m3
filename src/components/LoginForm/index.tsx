@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { Section } from "./styles";
+import { Toaster } from "react-hot-toast";
+import { IoPawSharp } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
 
@@ -44,32 +46,41 @@ function LoginForm() {
   });
 
   return (
-    <Section>
-      <form onSubmit={handleSubmit(loginUser)}>
-        <h1>SEU PET 🐾</h1>
-        <div>
-          <label>Email:</label>
-          <input type="text" placeholder="  ✉   Email" {...register("email")} />
-          <span>{errors.email?.message}</span>
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input
-            type="password"
-            placeholder=" 🔒   Senha"
-            {...register("password")}
-          />
-          <span>{errors.password?.message}</span>
-        </div>
-        <button type="submit">Login</button>
-        <p>
-          Não possui uma conta?
-          <button type="button" id="register-button" onClick={returnRegister}>
-            Cadastre-se
-          </button>
-        </p>
-      </form>
-    </Section>
+    <>
+      <Toaster position="top-right" reverseOrder={true} />
+      <Section>
+        <form onSubmit={handleSubmit(loginUser)}>
+          <h1>
+            SEU PET <IoPawSharp />
+          </h1>
+          <div>
+            <label>Email:</label>
+            <input
+              type="text"
+              placeholder="  ✉   Email"
+              {...register("email")}
+            />
+            <span>{errors.email?.message}</span>
+          </div>
+          <div>
+            <label>Senha:</label>
+            <input
+              type="password"
+              placeholder=" 🔒   Senha"
+              {...register("password")}
+            />
+            <span>{errors.password?.message}</span>
+          </div>
+          <button type="submit">Login</button>
+          <p>
+            Não possui uma conta?
+            <button type="button" id="register-button" onClick={returnRegister}>
+              Cadastre-se
+            </button>
+          </p>
+        </form>
+      </Section>
+    </>
   );
 }
 export default LoginForm;

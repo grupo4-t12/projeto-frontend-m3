@@ -8,6 +8,8 @@ import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { DivForm } from "./style";
+import { ToastContainer } from "react-toastify";
+import { IoPawSharp } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
 
@@ -63,7 +65,9 @@ function RegisterForm() {
         <form onSubmit={handleSubmit(registerUser)}>
           <div className="container">
             <div className="header">
-              <h1>SEU PET 🐾</h1>
+              <h1>
+                SEU PET <IoPawSharp />
+              </h1>
               {/* <img src={logoImage} alt="logo-patas" /> */}
             </div>
             <div className="content">
@@ -117,6 +121,7 @@ function RegisterForm() {
             </div>
           </div>
         </form>
+        <ToastContainer></ToastContainer>
       </DivForm>
     </>
   );

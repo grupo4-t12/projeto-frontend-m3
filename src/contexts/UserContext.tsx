@@ -2,6 +2,7 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import api from "../services/index";
 import { useNavigate } from "react-router-dom";
 import { IPet } from "./PetContext";
+import toast from "react-hot-toast";
 
 // Interface para tipar o contexto:
 
@@ -15,6 +16,8 @@ interface IUserContext {
   listUsersClinic: () => void;
   token: String | null;
   listPets: IPet[] | [];
+  toastSucess: (message: string) => void;
+  toastFail: (message: string) => void;
 }
 
 // Interface para tipar as props:
@@ -81,15 +84,35 @@ const UserProvider = ({ children }: IUserProps) => {
   let navigate = useNavigate();
   const token = localStorage.getItem("@TOKEN");
 
+  // Função de toastify bem-sucedido
+
+  function toastSucess(message: string) {
+    toast(message, {
+      icon: "😸",
+    });
+  }
+
+  // Função de toastify mal-sucedido
+
+  function toastFail(message: string) {
+    toast.error(message, {
+      icon: "😿",
+    });
+  }
+
   // Requisição de cadastro:
 
   function registerUser(formData: IRegisterFunction): void {
     api
       .post<IRegisterResponse>("/register", formData)
       .then(() => {
+        toastSucess("Cadastro bem-sucedido!");
         setTimeout(() => navigate("/login"), 3000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toastFail("Algo deu errado! Confira as informações e tente novamente");
+      });
   }
 
   // Requisição de login:
@@ -102,9 +125,13 @@ const UserProvider = ({ children }: IUserProps) => {
         listPetUser(response.data.user.id);
         localStorage.setItem("@TOKEN", response.data.accessToken);
         localStorage.setItem("@USERID", response.data.user.id);
+        toastSucess("Login realizado com sucesso!");
         setTimeout(() => navigate("/dashboard"), 3000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toastFail("Algo deu errado! Confira as informações e tente novamente");
+      });
   }
 
   // Requisição para listar usuários - Clínica
@@ -155,6 +182,8 @@ const UserProvider = ({ children }: IUserProps) => {
         listUsersClinic,
         token,
         listPets,
+        toastSucess,
+        toastFail,
       }}
     >
       {children}

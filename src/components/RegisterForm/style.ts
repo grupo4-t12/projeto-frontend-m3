@@ -9,8 +9,8 @@ export const DivForm = styled.div`
   background-color: #fff6f9;
 
   form {
-    width: 90%;
-    height: 580px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +19,7 @@ export const DivForm = styled.div`
     background-color: #ff70a5;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 900px) {
     form {
       width: 510px;
       height: 580px;
@@ -35,9 +35,16 @@ export const DivForm = styled.div`
 
   .header > h1 {
     margin: 0 0 21px;
-    font-size: 48px;
+    font-size: 40px;
     color: #fff6f9;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    margin-left: 7px;
+    width: 40px;
+    height: 40px;
   }
 
   .header > img {

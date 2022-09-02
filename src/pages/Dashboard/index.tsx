@@ -42,21 +42,27 @@ function Dashboard() {
           <button>Meus pets</button>
           <button>Consultas</button>
           <button>Vacinas</button>
-          <button>Agendamentos</button>
+          <button
+            onClick={() => {
+              window.open("https://calendly.com/axeellima/seupet-consulta");
+            }}
+          >
+            Agendamentos
+          </button>
         </div>
         <div className="pet-box">
           <h3>Meus Pets:</h3>
           <div className="pet-info">
-            <p>Pet:</p>
-            <p>Animal:</p>
-            <p>Editar:</p>
+            <p className="list-pet">Pet:</p>
+            <p className="list-animal">Animal:</p>
+            <p className="list-edit">Editar:</p>
           </div>
           <div className="pet-data">
             {listPets.map((pet) => (
               <div className="data" key={pet.id}>
-                <p>{pet.name}</p>
-                <p>{pet.animal}</p>
-                <div className="buttons">
+                <p className="list-pet">{pet.name}</p>
+                <p className="list-animal">{pet.animal}</p>
+                <div className="buttons list-edit">
                   <TiEdit
                     onClick={() => {
                       setPetId(pet.id);

@@ -59,12 +59,14 @@ export const Container = styled.div`
 
     p {
       width: 157px;
+      font-size: 16px;
       height: 57px;
       line-height: 19px;
     }
 
     span {
       padding: 2px;
+      font-size: 16px;
     }
   }
 `;
@@ -76,6 +78,7 @@ export const LinkButton = styled(Link)`
 `;
 
 export const Main = styled.main`
+  max-height: 100vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -84,7 +87,7 @@ export const Main = styled.main`
   .menu {
     display: flex;
     gap: 3px;
-
+    max-height: 80px;
     padding: 3px 5px;
     overflow: auto;
 
@@ -116,7 +119,7 @@ export const Main = styled.main`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+    margin-bottom: 20px;
     max-width: 750px;
     width: 93%;
     padding: 1rem;
@@ -135,11 +138,25 @@ export const Main = styled.main`
 
     .pet-info {
       display: flex;
-      justify-content: space-between;
-
       width: 100%;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid #000;
+    }
+    .list-pet {
+      margin-left: 5px;
+      width: 40%;
+      display: flex;
+      align-items: flex-start;
+    }
+    .list-animal {
+      width: 40%;
+      display: flex;
+      align-items: flex-start;
+    }
+    .list-edit {
+      width: 20%;
+      display: flex;
+      align-items: flex-start;
     }
 
     .pet-data {
@@ -188,7 +205,8 @@ export const Main = styled.main`
       flex-direction: column;
       align-items: flex-start;
       gap: 1rem;
-
+      max-height: 100vh;
+      height: 100vh;
       width: 238px;
       padding: 1.3rem 0.5rem;
 
