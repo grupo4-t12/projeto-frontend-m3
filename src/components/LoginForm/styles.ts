@@ -135,4 +135,11 @@ export const Section = styled.section`
 
     cursor: pointer;
   }
+
+  #register-button {
+    width: 110px;
+    height: 30px;
+    font-size: 15px;
+    margin-left: 5px;
+  }
 `;

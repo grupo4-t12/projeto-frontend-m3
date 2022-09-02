@@ -27,8 +27,11 @@ function LoginForm() {
 
   // Validadores de input:
   const formSchema = yup.object().shape({
-    email: yup.string().email("Email inválido").required("Email necessário"),
-    password: yup.string().required("Senha necessária"),
+    email: yup
+      .string()
+      .email("Digite um e-mail válido!")
+      .required("O e-mail é obrigatório!"),
+    password: yup.string().required("A senha é obrigatória!"),
   });
 
   // Tratamento do formulário:
