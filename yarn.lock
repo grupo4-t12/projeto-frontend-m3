@@ -3969,7 +3969,7 @@ es-abstract@^1.17.2, es-abstract@^1.19.0, es-abstract@^1.19.1, es-abstract@^1.19
     es-to-primitive "^1.2.1"
     function-bind "^1.1.1"
     function.prototype.name "^1.1.5"
-    get-intrinsic "^1.1.2"
+    get-intrinsic "^1.1.1"
     get-symbol-description "^1.0.0"
     has "^1.0.3"
     has-property-descriptors "^1.0.0"
@@ -3981,9 +3981,9 @@ es-abstract@^1.17.2, es-abstract@^1.19.0, es-abstract@^1.19.1, es-abstract@^1.19
     is-shared-array-buffer "^1.0.2"
     is-string "^1.0.7"
     is-weakref "^1.0.2"
-    object-inspect "^1.12.2"
+    object-inspect "^1.12.0"
     object-keys "^1.1.1"
-    object.assign "^4.1.4"
+    object.assign "^4.1.2"
     regexp.prototype.flags "^1.4.3"
     string.prototype.trimend "^1.0.5"
     string.prototype.trimstart "^1.0.5"
@@ -4929,11 +4929,6 @@ hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0:
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   dependencies:
     react-is "^16.7.0"
-
-hook-form@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/hook-form/-/hook-form-0.0.1.tgz#42cc6036a40d4552e3991aadfef82f2537600eb2"
-  integrity sha512-jusNZfTsHBSqvIgrhG8a1iwdeN1UT3HenQwg3snzd5ArwpNgDQlN2O0XdPqEE2oPUdMr/k16WmCccO8jRgiRYA==
 
 hoopy@^0.1.4:
   version "0.1.4"

@@ -6,41 +6,44 @@ import image4 from "../../assets/img/background-4.png";
 
 export const Section = styled.section`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-primary);
 
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  backface-visibility: hidden;
-  animation: slide 20s linear infinite 0s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 5s;
-  background-image: url(${image1});
+  @media (min-width: 946px) {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    animation: slide 20s linear infinite 0s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 5s;
+    background-image: url(${image1});
 
-  @keyframes slide {
-    0% {
-      background-image: url(${image1});
-    }
+    @keyframes slide {
+      0% {
+        background-image: url(${image1});
+      }
 
-    25% {
-      background-image: url(${image3});
-    }
+      25% {
+        background-image: url(${image3});
+      }
 
-    50% {
-      background-image: url(${image4});
-    }
+      50% {
+        background-image: url(${image4});
+      }
 
-    80% {
-      background-image: url(${image2});
+      80% {
+        background-image: url(${image2});
+      }
     }
   }
 
   form {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,9 +60,10 @@ export const Section = styled.section`
     form {
       width: 510px;
       height: 540px;
+      min-height: 0;
       border-radius: 10px;
     }
-}
+  }
 
   .content {
     display: flex;
@@ -68,13 +72,13 @@ export const Section = styled.section`
   }
 
   label {
-    width: 55px;
+    width: 180px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
-    margin-left: -220px;
+    margin-left: -100px;
   }
 
   .content > .input-icons {
@@ -99,7 +103,7 @@ export const Section = styled.section`
     border: none;
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     color: #5b5b5b;
     background-color: transparent;
   }
@@ -111,15 +115,15 @@ export const Section = styled.section`
 
   span {
     color: #2d2d2d;
-    width: 200px;
+    width: 272px;
     height: 10px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
     text-align: left;
-    margin-left: -75px;
-    margin-top: -10px;
+    margin-top: -8px;
+    margin-bottom: 8px;
   }
 
   button {

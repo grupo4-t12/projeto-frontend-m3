@@ -6,41 +6,44 @@ import image4 from "../../assets/img/background-4.png";
 
 export const DivForm = styled.section`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-primary);
 
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  backface-visibility: hidden;
-  animation: slide 20s linear infinite 0s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 5s;
-  background-image: url(${image1});
+  @media (min-width: 946px) {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    animation: slide 20s linear infinite 0s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 5s;
+    background-image: url(${image1});
 
-  @keyframes slide {
-    0% {
-      background-image: url(${image1});
-    }
+    @keyframes slide {
+      0% {
+        background-image: url(${image1});
+      }
 
-    25% {
-      background-image: url(${image3});
-    }
+      25% {
+        background-image: url(${image3});
+      }
 
-    50% {
-      background-image: url(${image4});
-    }
+      50% {
+        background-image: url(${image4});
+      }
 
-    80% {
-      background-image: url(${image2});
+      80% {
+        background-image: url(${image2});
+      }
     }
   }
 
   form {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,6 +60,7 @@ export const DivForm = styled.section`
       width: 510px;
       height: 600px;
       border-radius: 10px;
+      min-height: 0;
     }
   }
   /* 
@@ -105,7 +109,7 @@ export const DivForm = styled.section`
     border: none;
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     color: #5b5b5b;
     background-color: transparent;
   }
@@ -128,6 +132,15 @@ export const DivForm = styled.section`
     background-color: #fff6f9;
   }
 
+  button:hover {
+    border-radius: 50px;
+    transform: scale(1.1);
+    transition: all 0.5s;
+    transition: all 0.5s ease-in;
+    background-color: #76c2f4;
+    color: #fff6f9;
+  }
+
   #login-button {
     width: 110px;
     height: 30px;
@@ -137,7 +150,7 @@ export const DivForm = styled.section`
 
   span {
     color: #2d2d2d;
-    width: 210px;
+    width: 272px;
     height: 10px;
 
     font-family: "Inter";
@@ -146,7 +159,6 @@ export const DivForm = styled.section`
     font-size: 12px;
 
     text-align: left;
-    margin-left: -58px;
     margin-top: 2px;
   }
 `;

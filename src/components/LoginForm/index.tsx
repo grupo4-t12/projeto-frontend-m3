@@ -8,7 +8,6 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Section } from "./styles";
 import logo from "../../assets/img/seuPetS.png";
 import { Toaster } from "react-hot-toast";
-// import { IoPawSharp } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
 
@@ -62,14 +61,14 @@ function LoginForm() {
               />
             </div>
             <div className="content">
-              <label>Email:</label>
+              <label>Digite seu e-mail:</label>
               <div className="input-icons">
                 <MdEmail className="icon" color="#5b5b5b" size={45} />
                 <input type="text" placeholder="Email" {...register("email")} />
-                <span>{errors.email?.message}</span>
               </div>
+              <span>{errors.email?.message}</span>
 
-              <label>Senha:</label>
+              <label>Digite sua senha:</label>
               <div className="input-icons">
                 <RiLockPasswordFill
                   className="icon"
@@ -81,8 +80,8 @@ function LoginForm() {
                   placeholder="Senha"
                   {...register("password")}
                 />
-                <span>{errors.password?.message}</span>
               </div>
+              <span>{errors.password?.message}</span>
 
               <button type="submit">Login</button>
               <p>

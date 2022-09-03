@@ -9,7 +9,6 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { DivForm } from "./style";
 import { ToastContainer } from "react-toastify";
-// import { IoPawSharp } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
 
@@ -42,7 +41,7 @@ function RegisterForm() {
       .required("A senha é obrigatória!")
       .matches(
         /(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*_-])).{8,}$/,
-        "A senha precisa ter pelo menos 8 caracteres, 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caracter especial!"
+        "Formato: 8 caracteres, 1 letra maiúscula, 1 minúscula, 1 número e 1 caracter especial!"
       ),
     confirmPassword: yup
       .string()
