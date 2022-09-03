@@ -3,9 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
 import { Section } from "./styles";
+import logo from "../../assets/img/seuPetS.png";
 import { Toaster } from "react-hot-toast";
-import { IoPawSharp } from "react-icons/io5";
+// import { IoPawSharp } from "react-icons/io5";
 
 import { useNavigate } from "react-router-dom";
 
@@ -50,34 +53,50 @@ function LoginForm() {
       <Toaster position="top-right" reverseOrder={true} />
       <Section>
         <form onSubmit={handleSubmit(loginUser)}>
-          <h1>
-            SEU PET <IoPawSharp />
-          </h1>
-          <div>
-            <label>Email:</label>
-            <input
-              type="text"
-              placeholder="  ✉   Email"
-              {...register("email")}
-            />
-            <span>{errors.email?.message}</span>
+          <div className="container">
+            <div className="header">
+              <img
+                src={logo}
+                alt="logo-seu-pet"
+                className="animate__animated animate__heartBeat"
+              />
+            </div>
+            <div className="content">
+              <label>Email:</label>
+              <div className="input-icons">
+                <MdEmail className="icon" color="#5b5b5b" size={45} />
+                <input type="text" placeholder="Email" {...register("email")} />
+                <span>{errors.email?.message}</span>
+              </div>
+
+              <label>Senha:</label>
+              <div className="input-icons">
+                <RiLockPasswordFill
+                  className="icon"
+                  color="#5b5b5b"
+                  size={45}
+                />
+                <input
+                  type="password"
+                  placeholder="Senha"
+                  {...register("password")}
+                />
+                <span>{errors.password?.message}</span>
+              </div>
+
+              <button type="submit">Login</button>
+              <p>
+                Não possui uma conta?
+                <button
+                  type="button"
+                  id="register-button"
+                  onClick={returnRegister}
+                >
+                  Cadastre-se
+                </button>
+              </p>
+            </div>
           </div>
-          <div>
-            <label>Senha:</label>
-            <input
-              type="password"
-              placeholder=" 🔒   Senha"
-              {...register("password")}
-            />
-            <span>{errors.password?.message}</span>
-          </div>
-          <button type="submit">Login</button>
-          <p>
-            Não possui uma conta?
-            <button type="button" id="register-button" onClick={returnRegister}>
-              Cadastre-se
-            </button>
-          </p>
         </form>
       </Section>
     </>

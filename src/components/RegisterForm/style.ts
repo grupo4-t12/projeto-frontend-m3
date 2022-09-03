@@ -1,12 +1,42 @@
 import styled from "styled-components";
+import image1 from "../../assets/img/background-1.png";
+import image2 from "../../assets/img/background-2.png";
+import image3 from "../../assets/img/background-3.png";
+import image4 from "../../assets/img/background-4.png";
 
-export const DivForm = styled.div`
+export const DivForm = styled.section`
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff6f9;
+
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  animation: slide 20s linear infinite 0s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 5s;
+  background-image: url(${image1});
+
+  @keyframes slide {
+    0% {
+      background-image: url(${image1});
+    }
+
+    25% {
+      background-image: url(${image3});
+    }
+
+    50% {
+      background-image: url(${image4});
+    }
+
+    80% {
+      background-image: url(${image2});
+    }
+  }
 
   form {
     width: 100%;
@@ -15,41 +45,38 @@ export const DivForm = styled.div`
     flex-direction: column;
     justify-content: center;
     border: none;
-    border-radius: 10px;
-    background-color: #ff70a5;
   }
 
-  @media (min-width: 900px) {
+  .header > img {
+    width: 280px;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 946px) {
     form {
       width: 510px;
-      height: 580px;
+      height: 600px;
+      border-radius: 10px;
     }
   }
-
+  /* 
   .header {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-  }
+  } */
 
-  .header > h1 {
+  /* .header > h1 {
     margin: 0 0 21px;
-    font-size: 40px;
+    font-size: 48px;
     color: #fff6f9;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    align-items: center;
-  }
-  svg {
-    margin-left: 7px;
-    width: 40px;
-    height: 40px;
-  }
+  } */
 
-  .header > img {
+  /* .header > img {
     margin: 0 0 21px;
-  }
+  } */
 
   .content {
     display: flex;
@@ -72,7 +99,7 @@ export const DivForm = styled.div`
   }
 
   .content > .input-icons > input {
-    width: 222px;
+    width: 272px;
     height: 50px;
     padding-left: 20px;
     border: none;
@@ -91,7 +118,7 @@ export const DivForm = styled.div`
   button {
     width: 182px;
     height: 54px;
-    margin-top: 20px;
+    margin-top: 25px;
     cursor: pointer;
     border: none;
     border-radius: 4px;
