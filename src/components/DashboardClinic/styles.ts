@@ -114,6 +114,38 @@ export const Main = styled.main`
       background: var(--color-hover);
     }
   }
+  .search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+  .search-bar h3 {
+    display: flex;
+    align-content: center;
+  }
+  .search-bar div {
+    font-size: 20px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .search-bar div input {
+    font-size: 18px;
+    width: 120px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    padding: 5px;
+    background-color: var(--grey-2);
+  }
+  .search-bar div svg {
+    width: 43px;
+    height: 31px;
+    color: var(--white);
+    border-radius: 0px 4px 4px 0px;
+    background-color: var(--color-hover);
+  }
 
   .pet-box {
     display: flex;
@@ -243,6 +275,9 @@ export const Main = styled.main`
     .pet-box .buttons-add .add-pets {
       display: block;
       margin-left: 1%;
+    }
+    .search-bar div input {
+      width: 150px;
     }
   }
   @media (min-width: 1203px) {

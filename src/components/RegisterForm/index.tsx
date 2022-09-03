@@ -11,6 +11,7 @@ import { DivForm } from "./style";
 import { ToastContainer } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 export interface RegisterData {
   name: string;
@@ -60,6 +61,7 @@ function RegisterForm() {
 
   return (
     <>
+      <Toaster position="top-right" reverseOrder={true} />
       <DivForm>
         <form onSubmit={handleSubmit(registerUser)}>
           <div className="container">

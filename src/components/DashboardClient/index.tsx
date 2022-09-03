@@ -10,6 +10,7 @@ import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
+import { Toaster } from "react-hot-toast";
 
 function DashboardClient() {
   const { setUser, listPets } = useContext(UserContext);
@@ -26,6 +27,7 @@ function DashboardClient() {
 
   return (
     <Container>
+      <Toaster position="top-right" reverseOrder={true} />
       <header>
         <h1>
           SEU PET <IoPawSharp />
