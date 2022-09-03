@@ -5,16 +5,19 @@ import { IoLogOutSharp, IoTrashOutline, IoPawSharp } from "react-icons/io5";
 import { UserContext } from "../../contexts/UserContext";
 import { PetContext } from "../../contexts/PetContext";
 
+import { useNavigate } from "react-router-dom";
 import petImage from "../../assets/petImage.png";
 import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
 
-function HistoryConsultClinic() {
+function HistoryConsult() {
   const { setUser, listPets } = useContext(UserContext);
   const { editModal, setEditModal, deleteModal, setDeleteModal, setPetId } =
     useContext(PetContext);
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [animal, setAnimal] = useState("");
@@ -36,8 +39,20 @@ function HistoryConsultClinic() {
       </header>
       <Main>
         <div className="menu">
-          <button>Nossos clientes</button>
-          <button>Histórico consultas</button>
+          <button
+            onClick={() => {
+              navigate("/dashboard");
+            }}
+          >
+            Nossos clientes
+          </button>
+          <button
+            onClick={() => {
+              navigate("/dashboard/history-consults");
+            }}
+          >
+            Histórico consultas
+          </button>
           <button
             onClick={() => {
               window.open("https://calendly.com/axeellima/seupet-consulta");
@@ -92,4 +107,4 @@ function HistoryConsultClinic() {
     </Container>
   );
 }
-export default HistoryConsultClinic;
+export default HistoryConsult;
