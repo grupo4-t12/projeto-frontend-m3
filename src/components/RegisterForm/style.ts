@@ -63,24 +63,6 @@ export const DivForm = styled.section`
       min-height: 0;
     }
   }
-  /* 
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  } */
-
-  /* .header > h1 {
-    margin: 0 0 21px;
-    font-size: 48px;
-    color: #fff6f9;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  } */
-
-  /* .header > img {
-    margin: 0 0 21px;
-  } */
 
   .content {
     display: flex;

@@ -72,7 +72,7 @@ export const PetContext = createContext<IPetContext>({} as IPetContext);
 
 const PetProvider = ({ children }: IPetProps) => {
   const [petId, setPetId] = useState("");
-  const [addModal, setAddModal] = useState(true);
+  const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [idUser, setIdUser] = useState("");
@@ -92,7 +92,10 @@ const PetProvider = ({ children }: IPetProps) => {
         toastFail("Algo deu errado, tente novamente!");
         console.log(err);
       });
+
+    setAddModal(false);
   }
+
   function editPet(formData: IPet) {
     const token = localStorage.getItem("@TOKEN");
 

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { registerSchema } from "../../validators/registerUser";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import logo from "../../assets/img/seuPetS.png";
@@ -31,33 +31,11 @@ function RegisterForm() {
     navigate("/login");
   }
 
-  const schema = yup.object({
-    name: yup.string().required("O nome é obrigatório!"),
-    email: yup
-      .string()
-      .email("Digite um e-mail válido!")
-      .required("O e-mail é obrigatório!"),
-    password: yup
-      .string()
-      .required("A senha é obrigatória!")
-      .matches(
-        /(^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*_-])).{8,}$/,
-        "Formato: 8 caracteres, 1 letra maiúscula, 1 minúscula, 1 número e 1 caracter especial!"
-      ),
-    confirmPassword: yup
-      .string()
-      .oneOf(
-        [yup.ref("password"), null],
-        "Você precisa digitar a mesma senha do campo anterior!"
-      )
-      .required("Você precisa confirmar sua senha!"),
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterData>({ resolver: yupResolver(schema) });
+  } = useForm<RegisterData>({ resolver: yupResolver(registerSchema) });
 
   return (
     <>
