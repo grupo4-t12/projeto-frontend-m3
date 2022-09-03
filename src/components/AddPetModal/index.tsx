@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { addPetSchema } from "../../validators/addPet";
 import { PetContext } from "../../contexts/PetContext";
 import { ModalBoxEdit, ModalContainer } from "./styles";
 
@@ -11,7 +13,14 @@ interface IRegisterPetsFunction {
 
 const AddPetModal = () => {
   const { registerPet, setAddModal, idUser } = useContext(PetContext);
-  const { register, handleSubmit } = useForm<IRegisterPetsFunction>();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IRegisterPetsFunction>({
+    resolver: yupResolver(addPetSchema),
+  });
 
   function onSubmit(formData: IRegisterPetsFunction) {
     formData.userId = idUser;
@@ -33,6 +42,7 @@ const AddPetModal = () => {
             type="text"
             {...register("name")}
           />
+          <span>{errors.name?.message}</span>
 
           <label htmlFor="animal">Animal:</label>
           <input
@@ -41,13 +51,9 @@ const AddPetModal = () => {
             type="text"
             {...register("animal")}
           />
+          <span>{errors.animal?.message}</span>
 
-          <button
-            onClick={() => setTimeout(() => setAddModal(false), 3000)}
-            type="submit"
-          >
-            Adicionar
-          </button>
+          <button type="submit">Adicionar</button>
         </form>
       </ModalBoxEdit>
     </ModalContainer>

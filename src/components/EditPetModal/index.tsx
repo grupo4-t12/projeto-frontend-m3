@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { editPetSchema } from "../../validators/editPet";
 import { IPet, PetContext } from "../../contexts/PetContext";
 import { ModalBoxEdit, ModalContainer } from "./styles";
 
@@ -10,7 +12,14 @@ interface IEditPetModalProps {
 
 const EditPetModal = ({ name, animal }: IEditPetModalProps) => {
   const { editPet, setEditModal } = useContext(PetContext);
-  const { register, handleSubmit } = useForm<IPet>();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IPet>({
+    resolver: yupResolver(editPetSchema),
+  });
 
   return (
     <ModalContainer>
@@ -28,6 +37,7 @@ const EditPetModal = ({ name, animal }: IEditPetModalProps) => {
             defaultValue={name}
             {...register("name")}
           />
+          <span>{errors.name?.message}</span>
 
           <label htmlFor="animal">Animal:</label>
           <input
@@ -36,6 +46,7 @@ const EditPetModal = ({ name, animal }: IEditPetModalProps) => {
             defaultValue={animal}
             {...register("animal")}
           />
+          <span>{errors.animal?.message}</span>
 
           <button type="submit">Editar</button>
         </form>

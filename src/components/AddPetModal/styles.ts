@@ -95,4 +95,17 @@ export const ModalBoxEdit = styled.div`
       background: var(--sucess);
     }
   }
+
+  span {
+    color: #2d2d2d;
+    width: 272px;
+    height: 10px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: left;
+    margin-top: -8px;
+    margin-bottom: 8px;
+  }
 `;

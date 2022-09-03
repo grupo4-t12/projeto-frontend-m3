@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { loginSchema } from "../../validators/loginUser";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { MdEmail } from "react-icons/md";
@@ -29,22 +29,14 @@ function LoginForm() {
     navigate("/register");
   }
 
-  // Validadores de input:
-  const formSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email("Digite um e-mail válido!")
-      .required("O e-mail é obrigatório!"),
-    password: yup.string().required("A senha é obrigatória!"),
-  });
-
   // Tratamento do formulário:
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserData>({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(loginSchema),
   });
 
   return (
