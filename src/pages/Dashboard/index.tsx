@@ -19,5 +19,7 @@ function Dashboard() {
 
 export default Dashboard;
 
-//Email: matheus@mail.com
-//Password: Senh@123
+// Login do "dono da clínica":
+
+// Email: kenzinho@mail.com
+// Password: 123456
