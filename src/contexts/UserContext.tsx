@@ -178,7 +178,7 @@ const UserProvider = ({ children }: IUserProps) => {
     }
 
     loadUser();
-  }, [listPets, listUsers, token]);
+  }, [listPets, token]);
 
   return (
     <UserContext.Provider
