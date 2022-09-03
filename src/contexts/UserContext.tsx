@@ -11,8 +11,8 @@ interface IUserContext {
   setUser: (data: ILoginUser | null) => void;
   registerUser: (data: IRegisterFunction) => void;
   loginUser: (data: ILoginFunction) => void;
-  listUsers: IUsersList | [];
-  setListUsers: (data: IUsersList | []) => void;
+  listUsers: IListUsers[] | [];
+  setListUsers: (data: IListUsers[] | []) => void;
   listUsersClinic: () => void;
   token: String | null;
   listPets: IPet[] | [];
@@ -68,17 +68,19 @@ interface ILoginUser {
   id: string;
 }
 
-// Interface para a resposta da lista de usuários:
+// Interface para a resposta lista de usuários
 
-interface IUsersList {
-  users: ILoginUser[];
+interface IListUsers {
+  name: string;
+  email: string;
+  id: string;
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProps) => {
   const [user, setUser] = useState<ILoginUser | null>(null);
-  const [listUsers, setListUsers] = useState<IUsersList | []>([]);
+  const [listUsers, setListUsers] = useState<IListUsers[] | []>([]);
   const [listPets, setListPets] = useState<IPet[]>([]);
 
   let navigate = useNavigate();
@@ -127,6 +129,9 @@ const UserProvider = ({ children }: IUserProps) => {
         localStorage.setItem("@USERID", response.data.user.id);
         toastSucess("Login realizado com sucesso!");
         setTimeout(() => navigate("/dashboard"), 3000);
+        if (response.data.user.id.toString() === "9") {
+          listUsersClinic();
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -137,7 +142,7 @@ const UserProvider = ({ children }: IUserProps) => {
   // Requisição para listar usuários - Clínica
 
   function listUsersClinic() {
-    api.get<IUsersList>("/users").then((response) => {
+    api.get<IListUsers[]>("/users").then((response) => {
       setListUsers(response.data);
     });
   }
@@ -162,13 +167,18 @@ const UserProvider = ({ children }: IUserProps) => {
         api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
           setListPets(response.data);
         });
+        if (idUser === "1") {
+          api.get<IListUsers[]>("/users").then((response) => {
+            setListUsers(response.data);
+          });
+        }
       } else {
         localStorage.clear();
       }
     }
 
     loadUser();
-  }, [listPets, token]);
+  }, [listPets, listUsers, token]);
 
   return (
     <UserContext.Provider

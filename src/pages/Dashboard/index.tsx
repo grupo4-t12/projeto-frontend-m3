@@ -7,7 +7,7 @@ function Dashboard() {
   const idUser = localStorage.getItem("@USERID");
 
   return token ? (
-    idUser === "9" ? (
+    idUser === "1" ? (
       <DashboardClinic />
     ) : (
       <DashboardClient />

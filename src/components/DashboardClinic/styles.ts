@@ -145,10 +145,13 @@ export const Main = styled.main`
     .list-pet {
       width: 30%;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
     }
     .list-animal {
       width: 35%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
       display: flex;
       align-items: flex-start;
     }
@@ -157,18 +160,34 @@ export const Main = styled.main`
       display: none;
     }
     .list-edit {
-      width: 15%;
+      width: 35%;
       display: flex;
-      align-items: flex-start;
+      justify-content: center;
     }
-
+    .buttons-add {
+      width: 35%;
+      display: flex;
+      justify-content: center;
+    }
+    .buttons-add svg {
+      color: var(--color-primary);
+    }
+    .pet-box .buttons-add {
+      width: 20%;
+    }
+    .buttons-add .add-pets {
+      display: none;
+      margin-left: 5px;
+    }
+    .buttons-add .add-consults {
+      margin-right: 9%;
+    }
     .pet-data {
       width: 100%;
 
       .data {
         display: flex;
         align-items: center;
-        justify-content: space-between;
 
         padding: 2rem 0px;
         border-bottom: 1px solid #000;
@@ -196,13 +215,34 @@ export const Main = styled.main`
       }
     }
   }
-  @media (min-width: 700px) {
-    .list-pet {
-      width: 20%;
+  @media (max-width: 450px) {
+    .list-animal {
+      max-width: 15ch;
     }
+  }
+  @media (min-width: 700px) {
     .pet-box .list-newPet {
       display: flex;
       align-items: flex-start;
+    }
+    .pet-box .list-animal {
+      max-width: none;
+      white-space: normal;
+      overflow: auto;
+      display: flex;
+      align-items: flex-start;
+    }
+    .pet-box .list-edit {
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    .pet-box .buttons-add {
+      width: 60%;
+      justify-content: space-between;
+    }
+    .pet-box .buttons-add .add-pets {
+      display: block;
+      margin-left: 1%;
     }
   }
   @media (min-width: 1203px) {
