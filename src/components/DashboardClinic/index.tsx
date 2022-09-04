@@ -4,7 +4,7 @@ import { IoSearch } from "react-icons/io5";
 
 import { UserContext } from "../../contexts/UserContext";
 
-import petImage from "../../assets/petImage.png";
+import petImage from "../../assets/img/petImage.png";
 
 import { Container, LinkButton, Main } from "./styles";
 import { useNavigate } from "react-router-dom";
@@ -12,22 +12,26 @@ import { PetContext } from "../../contexts/PetContext";
 import AddPetModal from "../AddPetModal";
 import { Toaster } from "react-hot-toast";
 
+import { IListUsers } from "../../contexts/UserContext";
+
 function DashboardClinic() {
-  const { setUser, listUsers, setListUsers } = useContext(UserContext);
+  const { setUser, listUsers } = useContext(UserContext);
   const { addModal, setAddModal, setIdUser } = useContext(PetContext);
   const [search, setSearch] = useState<string>("");
+  const [filteredUsers, setFilteredUsers] = useState<IListUsers[] | []>([]);
   const navigate = useNavigate();
 
   function handleClick() {
     localStorage.clear();
     setUser(null);
   }
-  function searching() {
-    const busca = listUsers.filter((user) => {
-      return user.name.toLowerCase().includes(search.trim().toLowerCase());
-    });
-    setListUsers(busca);
-    console.log(listUsers);
+
+  function searchUser(inputValue: string) {
+    setFilteredUsers(
+      listUsers.filter((element) =>
+        element.name.toLowerCase().includes(inputValue)
+      )
+    );
   }
 
   return (
@@ -72,7 +76,7 @@ function DashboardClinic() {
             <div>
               <input
                 type="text"
-                placeholder="Pesquisar clien..."
+                placeholder="Pesquisar"
                 value={search}
                 onChange={(event) => {
                   setSearch(event.target.value);
@@ -80,8 +84,7 @@ function DashboardClinic() {
               />
               <IoSearch
                 onClick={() => {
-                  searching();
-                  console.log(listUsers);
+                  searchUser(search);
                 }}
               />
             </div>
@@ -93,23 +96,41 @@ function DashboardClinic() {
             <p className="list-edit">Consultas:</p>
           </div>
           <div className="pet-data">
-            {listUsers.map((user) => (
-              <div className="data" key={user.id}>
-                <p className="list-pet">{user.name}</p>
-                <p className="list-animal">{user.email}</p>
-                <div className="buttons-add">
-                  <IoAddCircle
-                    className="add-pets"
-                    size={40}
-                    onClick={() => {
-                      setIdUser(user.id);
-                      setAddModal(true);
-                    }}
-                  />
-                  <IoAddCircle className="add-consults" size={40} />
-                </div>
-              </div>
-            ))}
+            {filteredUsers.length !== 0
+              ? filteredUsers.map((user) => (
+                  <div className="data" key={user.id}>
+                    <p className="list-pet">{user.name}</p>
+                    <p className="list-animal">{user.email}</p>
+                    <div className="buttons-add">
+                      <IoAddCircle
+                        className="add-pets"
+                        size={40}
+                        onClick={() => {
+                          setIdUser(user.id);
+                          setAddModal(true);
+                        }}
+                      />
+                      <IoAddCircle className="add-consults" size={40} />
+                    </div>
+                  </div>
+                ))
+              : listUsers.map((user) => (
+                  <div className="data" key={user.id}>
+                    <p className="list-pet">{user.name}</p>
+                    <p className="list-animal">{user.email}</p>
+                    <div className="buttons-add">
+                      <IoAddCircle
+                        className="add-pets"
+                        size={40}
+                        onClick={() => {
+                          setIdUser(user.id);
+                          setAddModal(true);
+                        }}
+                      />
+                      <IoAddCircle className="add-consults" size={40} />
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
         <aside>
