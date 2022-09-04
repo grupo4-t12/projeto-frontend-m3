@@ -5,7 +5,7 @@ import { IoLogOutSharp, IoTrashOutline, IoPawSharp } from "react-icons/io5";
 import { UserContext } from "../../contexts/UserContext";
 import { PetContext } from "../../contexts/PetContext";
 
-import petImage from "../../assets/petImage.png";
+import petImage from "../../assets/img/petImage.png";
 import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
