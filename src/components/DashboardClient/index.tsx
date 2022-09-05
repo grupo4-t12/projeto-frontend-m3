@@ -11,6 +11,7 @@ import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
 import { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function DashboardClient() {
   const { setUser, listPets } = useContext(UserContext);
@@ -19,6 +20,7 @@ function DashboardClient() {
 
   const [name, setName] = useState("");
   const [animal, setAnimal] = useState("");
+  const navigate = useNavigate();
 
   function handleClick() {
     localStorage.clear();
@@ -38,8 +40,10 @@ function DashboardClient() {
       </header>
       <Main>
         <div className="menu">
-          <button>Meus pets</button>
-          <button>Consultas</button>
+          <button onClick={() => navigate("/dashboard")}>Meus pets</button>
+          <button onClick={() => navigate("/dashboard/consults")}>
+            Consultas
+          </button>
           <button>Vacinas</button>
           <button
             onClick={() => {

@@ -22,6 +22,8 @@ interface IUserContext {
   addConsult: boolean;
   setAddConsult: (data: boolean) => void;
   listPetUser: (userId: string) => void;
+  listConsultsUser: (idUser: string) => void;
+  listConsults: IListConsults[] | [];
 }
 
 // Interface para tipar as props:
@@ -78,6 +80,7 @@ export interface IListUsers {
   name: string;
   email: string;
   id: string;
+  consultas: IListConsults[];
 }
 
 // Interface para criação de consulta
@@ -88,6 +91,16 @@ export interface IRegisterConsultFunction {
   animal: string;
   valor: string;
   userId: string;
+  id: string;
+}
+
+// Interface para a resposta de listagem de consultas
+
+export interface IListConsults {
+  procedimento: string;
+  pet: string;
+  animal: string;
+  id: string;
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -96,6 +109,7 @@ const UserProvider = ({ children }: IUserProps) => {
   const [user, setUser] = useState<ILoginUser | null>(null);
   const [listUsers, setListUsers] = useState<IListUsers[] | []>([]);
   const [listPets, setListPets] = useState<IPet[]>([]);
+  const [listConsults, setListConsults] = useState<IListConsults[]>([]);
   const [addConsult, setAddConsult] = useState(false);
 
   let navigate = useNavigate();
@@ -140,10 +154,14 @@ const UserProvider = ({ children }: IUserProps) => {
       .then((response) => {
         setUser(response.data.user);
         listPetUser(response.data.user.id);
+        listConsultsUser(response.data.user.id);
+
         localStorage.setItem("@TOKEN", response.data.accessToken);
         localStorage.setItem("@USERID", response.data.user.id);
+
         toastSucess("Login realizado com sucesso!");
         setTimeout(() => navigate("/dashboard"), 3000);
+
         if (response.data.user.id.toString() === "9") {
           listUsersClinic();
         }
@@ -164,10 +182,20 @@ const UserProvider = ({ children }: IUserProps) => {
 
   // Requisição para listar pets
 
-  function listPetUser(idUser: string) {
+  function listPetUser(idUser: string | null) {
     api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
       setListPets(response.data);
     });
+  }
+
+  //Requisição para listar consultas do usuário
+
+  function listConsultsUser(idUser: string | null) {
+    api
+      .get<IListUsers>(`/users/${idUser}?_embed=consultas`)
+      .then((response) => {
+        setListConsults(response.data.consultas);
+      });
   }
 
   // Requisição para adicionar consulta
@@ -201,13 +229,11 @@ const UserProvider = ({ children }: IUserProps) => {
       if (token) {
         api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-        api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
-          setListPets(response.data);
-        });
+        listPetUser(idUser);
+        listConsultsUser(idUser);
+
         if (idUser === "1") {
-          api.get<IListUsers[]>("/users").then((response) => {
-            setListUsers(response.data);
-          });
+          listUsersClinic();
         }
       } else {
         localStorage.clear();
@@ -235,6 +261,8 @@ const UserProvider = ({ children }: IUserProps) => {
         addConsult,
         setAddConsult,
         listPetUser,
+        listConsults,
+        listConsultsUser,
       }}
     >
       {children}
