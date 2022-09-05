@@ -62,12 +62,13 @@ export interface IPet {
   id: string;
 }
 
-// Tipando os parâmetros passados as functons
+// Tipando os parâmetros passados nas functons
 // interface IListPetFuction {
 //   idUser?: string;
 //   idPet: string;
 //   token: string;
 // }
+
 export const PetContext = createContext<IPetContext>({} as IPetContext);
 
 const PetProvider = ({ children }: IPetProps) => {
