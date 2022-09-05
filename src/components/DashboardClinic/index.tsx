@@ -14,6 +14,8 @@ import { Toaster } from "react-hot-toast";
 
 import { IListUsers } from "../../contexts/UserContext";
 
+import UsersCardList from "../UsersList";
+
 function DashboardClinic() {
   const { setUser, listUsers } = useContext(UserContext);
   const { addModal, setAddModal, setIdUser } = useContext(PetContext);
@@ -96,41 +98,21 @@ function DashboardClinic() {
             <p className="list-edit">Consultas:</p>
           </div>
           <div className="pet-data">
-            {filteredUsers.length !== 0
-              ? filteredUsers.map((user) => (
-                  <div className="data" key={user.id}>
-                    <p className="list-pet">{user.name}</p>
-                    <p className="list-animal">{user.email}</p>
-                    <div className="buttons-add">
-                      <IoAddCircle
-                        className="add-pets"
-                        size={40}
-                        onClick={() => {
-                          setIdUser(user.id);
-                          setAddModal(true);
-                        }}
-                      />
-                      <IoAddCircle className="add-consults" size={40} />
-                    </div>
-                  </div>
-                ))
-              : listUsers.map((user) => (
-                  <div className="data" key={user.id}>
-                    <p className="list-pet">{user.name}</p>
-                    <p className="list-animal">{user.email}</p>
-                    <div className="buttons-add">
-                      <IoAddCircle
-                        className="add-pets"
-                        size={40}
-                        onClick={() => {
-                          setIdUser(user.id);
-                          setAddModal(true);
-                        }}
-                      />
-                      <IoAddCircle className="add-consults" size={40} />
-                    </div>
-                  </div>
-                ))}
+            {filteredUsers.length !== 0 ? (
+              <UsersCardList
+                users={filteredUsers}
+                IoAddCircle={IoAddCircle}
+                setIdUser={setIdUser}
+                setAddModal={setAddModal}
+              />
+            ) : (
+              <UsersCardList
+                users={listUsers}
+                IoAddCircle={IoAddCircle}
+                setIdUser={setIdUser}
+                setAddModal={setAddModal}
+              />
+            )}
           </div>
         </div>
         <aside>
