@@ -7,6 +7,8 @@ interface IUsersListProps {
   IoAddCircle: React.ElementType;
   setIdUser: Dispatch<SetStateAction<string>>;
   setAddModal: (data: boolean) => void;
+  listPetUser: (data: string) => void;
+  setAddConsult: (data: boolean) => void;
 }
 
 const UsersCardList = ({
@@ -14,6 +16,8 @@ const UsersCardList = ({
   IoAddCircle,
   setIdUser,
   setAddModal,
+  listPetUser,
+  setAddConsult,
 }: IUsersListProps) => {
   return (
     <ul>
@@ -24,6 +28,8 @@ const UsersCardList = ({
           IoAddCircle={IoAddCircle}
           setIdUser={setIdUser}
           setAddModal={setAddModal}
+          listPetUser={listPetUser}
+          setAddConsult={setAddConsult}
         />
       ))}
     </ul>

@@ -18,6 +18,10 @@ interface IUserContext {
   listPets: IPet[] | [];
   toastSucess: (message: string) => void;
   toastFail: (message: string) => void;
+  addConsultUser: (FormData: IRegisterConsultFunction) => void;
+  addConsult: boolean;
+  setAddConsult: (data: boolean) => void;
+  listPetUser: (userId: string) => void;
 }
 
 // Interface para tipar as props:
@@ -76,12 +80,23 @@ export interface IListUsers {
   id: string;
 }
 
+// Interface para criação de consulta
+
+export interface IRegisterConsultFunction {
+  procedimento: string;
+  pet: string;
+  animal: string;
+  valor: string;
+  userId: string;
+}
+
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProps) => {
   const [user, setUser] = useState<ILoginUser | null>(null);
   const [listUsers, setListUsers] = useState<IListUsers[] | []>([]);
   const [listPets, setListPets] = useState<IPet[]>([]);
+  const [addConsult, setAddConsult] = useState(false);
 
   let navigate = useNavigate();
   const token = localStorage.getItem("@TOKEN");
@@ -155,6 +170,23 @@ const UserProvider = ({ children }: IUserProps) => {
     });
   }
 
+  // Requisição para adicionar consulta
+
+  function addConsultUser(formData: IRegisterConsultFunction) {
+    api
+      .post<IRegisterConsultFunction>("/consultas", formData)
+      .then((response) => {
+        toastSucess("Consulta registrada com sucesso!");
+        return response;
+      })
+      .catch((err) => {
+        toastFail("Algo deu errado, tente novamente!");
+        console.log(err);
+      });
+
+    setAddConsult(false);
+  }
+
   // Mantém a página do usuário atualizada
 
   useEffect(() => {
@@ -194,6 +226,10 @@ const UserProvider = ({ children }: IUserProps) => {
         listPets,
         toastSucess,
         toastFail,
+        addConsultUser,
+        addConsult,
+        setAddConsult,
+        listPetUser,
       }}
     >
       {children}

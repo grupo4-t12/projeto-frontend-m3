@@ -6,6 +6,8 @@ interface IUserCardProps {
   IoAddCircle: React.ElementType;
   setIdUser: Dispatch<SetStateAction<string>>;
   setAddModal: (data: boolean) => void;
+  listPetUser: (data: string) => void;
+  setAddConsult: (data: boolean) => void;
 }
 
 const UserCard = ({
@@ -13,6 +15,8 @@ const UserCard = ({
   IoAddCircle,
   setIdUser,
   setAddModal,
+  listPetUser,
+  setAddConsult,
 }: IUserCardProps) => {
   return (
     <li className="data">
@@ -27,7 +31,15 @@ const UserCard = ({
             setAddModal(true);
           }}
         />
-        <IoAddCircle className="add-consults" size={40} />
+        <IoAddCircle
+          className="add-consults"
+          size={40}
+          onClick={() => {
+            listPetUser(user.id);
+            setIdUser(user.id);
+            setAddConsult(true);
+          }}
+        />
       </div>
     </li>
   );
