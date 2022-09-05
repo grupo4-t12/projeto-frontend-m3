@@ -74,7 +74,7 @@ interface ILoginUser {
 
 // Interface para a resposta lista de usuários
 
-interface IListUsers {
+export interface IListUsers {
   name: string;
   email: string;
   id: string;

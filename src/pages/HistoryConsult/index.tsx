@@ -6,7 +6,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { PetContext } from "../../contexts/PetContext";
 
 import { useNavigate } from "react-router-dom";
-import petImage from "../../assets/petImage.png";
+import petImage from "../../assets/img/petImage.png";
 import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
@@ -97,7 +97,7 @@ function HistoryConsult() {
           </div>
         </div>
         <aside>
-          <p>Acompanhe seu pet com a gente, Amar é cuidar!</p>
+          <p>Acompanhe seu pet com a gente, amar é cuidar!</p>
           <img src={petImage} alt="" />
           <span>Agende uma consulta</span>
         </aside>
