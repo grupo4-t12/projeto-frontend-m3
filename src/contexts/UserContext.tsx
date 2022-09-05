@@ -201,6 +201,11 @@ const UserProvider = ({ children }: IUserProps) => {
   // Requisição para adicionar consulta
 
   function addConsultUser(formData: IRegisterConsultFunction) {
+    console.log(formData);
+    const token = localStorage.getItem("@TOKEN");
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
     api
       .post<IRegisterConsultFunction>("/consultas", formData)
       .then((response) => {
