@@ -1,30 +1,42 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { addPetSchema } from "../../validators/addPet";
+import { addConsultSchema } from "../../validators/addConsult";
 import { PetContext } from "../../contexts/PetContext";
 import { ModalBoxEdit, ModalContainer } from "./styles";
 import {
   IRegisterConsultFunction,
   UserContext,
 } from "../../contexts/UserContext";
+import { IPet } from "../../contexts/PetContext";
+import api from "../../services";
 
 const AddConsultModal = () => {
-  const { addConsultUser, listPets, setAddConsult } = useContext(UserContext);
+  const { addConsultUser, setAddConsult } = useContext(UserContext);
   const { idUser } = useContext(PetContext);
+  const [listPetModal, setListPetModal] = useState<IPet[]>([]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IRegisterConsultFunction>({
-    resolver: yupResolver(addPetSchema),
+    resolver: yupResolver(addConsultSchema),
   });
 
   function onSubmit(formData: IRegisterConsultFunction) {
     formData.userId = idUser;
     addConsultUser(formData);
   }
+
+  function modalPetsList(idUser: string) {
+    api.get<IPet[]>(`/pets?userId=${idUser}`).then((response) => {
+      setListPetModal(response.data);
+    });
+  }
+
+  modalPetsList(idUser);
+
   return (
     <ModalContainer>
       <ModalBoxEdit>
@@ -45,7 +57,7 @@ const AddConsultModal = () => {
 
           <label htmlFor="pet">Pet:</label>
           <select placeholder="Selecione o pet" id="pet" {...register("pet")}>
-            {listPets.map((pet, index) => (
+            {listPetModal.map((pet, index) => (
               <option value={pet.name} key={index}>
                 {pet.name}
               </option>
@@ -65,7 +77,7 @@ const AddConsultModal = () => {
           <label htmlFor="valor">Valor:</label>
           <input
             id="valor"
-            placeholder="Digite o procedimento realizado"
+            placeholder="Digite o preço"
             type="text"
             {...register("valor")}
           />
