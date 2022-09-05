@@ -94,12 +94,12 @@ export interface IRegisterConsultFunction {
   id: string;
 }
 
-// Interface para a resposta lista de consultas
+// Interface para a resposta de listagem de consultas
 
 export interface IListConsults {
-  Procedimento: string;
-  Pet: string;
-  Animal: string;
+  procedimento: string;
+  pet: string;
+  animal: string;
   id: string;
 }
 

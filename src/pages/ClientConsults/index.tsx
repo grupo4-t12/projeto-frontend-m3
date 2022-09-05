@@ -54,9 +54,9 @@ function ClientConsult() {
           <div className="consult-data">
             {listConsults.map((consult) => (
               <div className="data" key={consult.id}>
-                <p className="list-procedure">{consult.Procedimento}</p>
-                <p className="list-animal">{consult.Animal}</p>
-                <p className="list-pet">{consult.Pet}</p>
+                <p className="list-procedure">{consult.procedimento}</p>
+                <p className="list-animal">{consult.animal}</p>
+                <p className="list-pet">{consult.pet}</p>
               </div>
             ))}
           </div>
