@@ -11,9 +11,17 @@ import { useNavigate } from "react-router-dom";
 import { PetContext } from "../../contexts/PetContext";
 import AddPetModal from "../AddPetModal";
 import { Toaster } from "react-hot-toast";
+import AddConsultModal from "../AddConsultModal";
 
 function DashboardClinic() {
-  const { setUser, listUsers, setListUsers } = useContext(UserContext);
+  const {
+    setUser,
+    listUsers,
+    setListUsers,
+    addConsult,
+    setAddConsult,
+    listPetUser,
+  } = useContext(UserContext);
   const { addModal, setAddModal, setIdUser } = useContext(PetContext);
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
@@ -106,7 +114,15 @@ function DashboardClinic() {
                       setAddModal(true);
                     }}
                   />
-                  <IoAddCircle className="add-consults" size={40} />
+                  <IoAddCircle
+                    className="add-consults"
+                    size={40}
+                    onClick={() => {
+                      listPetUser(user.id);
+                      setIdUser(user.id);
+                      setAddConsult(true);
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -119,6 +135,7 @@ function DashboardClinic() {
         </aside>
       </Main>
       {addModal && <AddPetModal />}
+      {addConsult && <AddConsultModal />}
     </Container>
   );
 }
