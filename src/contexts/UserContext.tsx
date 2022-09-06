@@ -24,6 +24,8 @@ interface IUserContext {
   listPetUser: (userId: string) => void;
   listConsultsUser: (idUser: string) => void;
   listConsults: IListConsults[] | [];
+  listAllConsults:  IListConsults[] | [];
+  allConsults: () => void;
 }
 
 // Interface para tipar as props:
@@ -101,7 +103,9 @@ export interface IListConsults {
   pet: string;
   animal: string;
   id: string;
+  valor: string;
 }
+
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
@@ -111,6 +115,7 @@ const UserProvider = ({ children }: IUserProps) => {
   const [listPets, setListPets] = useState<IPet[]>([]);
   const [listConsults, setListConsults] = useState<IListConsults[]>([]);
   const [addConsult, setAddConsult] = useState(false);
+  const [listAllConsults, setListAllConsults] = useState<IListConsults[]>([]);
 
   let navigate = useNavigate();
   const token = localStorage.getItem("@TOKEN");
@@ -198,6 +203,17 @@ const UserProvider = ({ children }: IUserProps) => {
       });
   }
 
+  //Requisição para listar todas as consultas
+
+  function allConsults() {
+    api
+      .get<IListConsults>(`/consultas`)
+      .then((response) => {
+        // setListAllConsults(response.data.consultas)
+        console.log(response.data)
+      })
+  }
+  
   // Requisição para adicionar consulta
 
   function addConsultUser(formData: IRegisterConsultFunction) {
@@ -234,6 +250,7 @@ const UserProvider = ({ children }: IUserProps) => {
 
         if (idUser === "1") {
           listUsersClinic();
+      
         }
       } else {
         localStorage.clear();
@@ -263,6 +280,8 @@ const UserProvider = ({ children }: IUserProps) => {
         listPetUser,
         listConsults,
         listConsultsUser,
+        listAllConsults,
+        allConsults,
       }}
     >
       {children}
