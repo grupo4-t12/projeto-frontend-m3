@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { TiEdit } from "react-icons/ti";
 import { IoLogOutSharp, IoTrashOutline, IoPawSharp } from "react-icons/io5";
 
-import { UserContext } from "../../contexts/UserContext";
+import logo from "../../assets/img/seuPetS.png";
+import { IRegisterConsultFunction, UserContext } from "../../contexts/UserContext";
 import { PetContext } from "../../contexts/PetContext";
 
 import { useNavigate } from "react-router-dom";
@@ -11,6 +12,9 @@ import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { addPetSchema } from "../../validators/addPet";
 
 function HistoryConsult() {
   const { setUser, listPets } = useContext(UserContext);
@@ -29,13 +33,21 @@ function HistoryConsult() {
 
   return (
     <Container>
-      <header>
-        <h1>
-          SEU PET <IoPawSharp />
-        </h1>
-        <LinkButton onClick={handleClick} to="/">
-          <IoLogOutSharp size={30} />
-        </LinkButton>
+     <header>
+        <div className="containerHeader">
+          <div className="header">
+            <img
+              src={logo}
+              alt="logo-patas"
+              className="animate__animated animate__heartBeat"
+            />
+          </div>
+        </div>
+        <div className="link">
+          <LinkButton className="tagLink" onClick={handleClick} to="/">
+            <IoLogOutSharp className="imgLink" size={30} />
+          </LinkButton>
+        </div>
       </header>
       <Main>
         <div className="menu">
@@ -64,16 +76,17 @@ function HistoryConsult() {
         <div className="pet-box">
           <h3>Clientes:</h3>
           <div className="titles">
-            <p className="list-pet">Cliente:</p>
-            <p className="list-animal">E-mail:</p>
-            <p className="list-newPet">Pets:</p>
-            <p className="list-edit">Consultas:</p>
+            <p className="list-pet">Nome</p>
+            <p className="list-animal">Pet</p>
+            <p className="list-newPet">Procedimento</p>
+            <p className="list-edit">Consultas</p>
           </div>
           <div className="pet-data">
             {listPets.map((pet) => (
               <div className="data" key={pet.id}>
                 <p className="list-pet">{pet.name}</p>
                 <p className="list-animal">{pet.animal}</p>
+                <p className="list-newPet">Procedimento</p>
                 <div className="buttons list-edit">
                   <TiEdit
                     onClick={() => {
