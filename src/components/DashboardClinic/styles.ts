@@ -191,7 +191,7 @@ export const Main = styled.main`
       width: 20%;
       display: none;
     }
-    .list-vacine {
+    .list-vaccine {
       display: none;
       width: 10%;
     }
@@ -215,7 +215,7 @@ export const Main = styled.main`
       display: none;
       margin-left: 5px;
     }
-    .buttons-add .add-vacine {
+    .buttons-add .add-vaccine {
       display: none;
     }
     .buttons-add .add-consults {
@@ -271,7 +271,7 @@ export const Main = styled.main`
       display: flex;
       align-items: flex-start;
     }
-    .pet-box .list-vacine {
+    .pet-box .list-vaccine {
       display: block;
     }
     .pet-box .list-edit {
@@ -289,7 +289,7 @@ export const Main = styled.main`
     .search-bar div input {
       width: 150px;
     }
-    .pet-box .buttons-add .add-vacine {
+    .pet-box .buttons-add .add-vaccine {
       display: block;
     }
   }

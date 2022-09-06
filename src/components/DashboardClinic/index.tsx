@@ -12,6 +12,7 @@ import { PetContext } from "../../contexts/PetContext";
 import AddPetModal from "../AddPetModal";
 import { Toaster } from "react-hot-toast";
 import AddConsultModal from "../AddConsultModal";
+import AddVaccineModal from "../AddVaccineModal";
 
 import { IListUsers } from "../../contexts/UserContext";
 
@@ -20,7 +21,8 @@ import UsersCardList from "../UsersList";
 function DashboardClinic() {
   const { setUser, listUsers, addConsult, setAddConsult, listPetUser } =
     useContext(UserContext);
-  const { addModal, setAddModal, setIdUser } = useContext(PetContext);
+  const { addModal, setAddModal, setIdUser, addVaccine, setAddVaccine } =
+    useContext(PetContext);
   const [search, setSearch] = useState<string>("");
   const [filteredUsers, setFilteredUsers] = useState<IListUsers[] | []>([]);
   const navigate = useNavigate();
@@ -97,7 +99,7 @@ function DashboardClinic() {
             <p className="list-pet">Cliente:</p>
             <p className="list-animal">E-mail:</p>
             <p className="list-newPet">Pets:</p>
-            <p className="list-vacine">Vacinas:</p>
+            <p className="list-vaccine">Vacinas:</p>
             <p className="list-edit">Consultas:</p>
           </div>
           <div className="pet-data">
@@ -109,6 +111,7 @@ function DashboardClinic() {
                 setAddModal={setAddModal}
                 listPetUser={listPetUser}
                 setAddConsult={setAddConsult}
+                setAddVaccine={setAddVaccine}
               />
             ) : (
               <UsersCardList
@@ -118,6 +121,7 @@ function DashboardClinic() {
                 setAddModal={setAddModal}
                 listPetUser={listPetUser}
                 setAddConsult={setAddConsult}
+                setAddVaccine={setAddVaccine}
               />
             )}
           </div>
@@ -130,6 +134,7 @@ function DashboardClinic() {
       </Main>
       {addModal && <AddPetModal />}
       {addConsult && <AddConsultModal />}
+      {addVaccine && <AddVaccineModal />}
     </Container>
   );
 }

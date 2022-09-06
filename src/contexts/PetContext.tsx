@@ -23,6 +23,10 @@ interface IPetContext {
   setDeleteModal: Dispatch<SetStateAction<boolean>>;
   setPetId: Dispatch<SetStateAction<string>>;
   setIdUser: Dispatch<SetStateAction<string>>;
+  petId: string;
+  addVaccine: boolean;
+  setAddVaccine: (data: boolean) => void;
+  addVaccinePet: (FormData: IRegisterVaccineFunction) => void;
 }
 
 // Interface para tipar as props:
@@ -56,10 +60,19 @@ export interface IEditPet {
 }
 
 // Tipando a response da função editPet
+
 export interface IPet {
   name: string;
   animal: string;
   id: string;
+}
+
+// Interface para a criação de vacina
+
+interface IRegisterVaccineFunction {
+  tipo: string;
+  petId: string;
+  data: string;
 }
 
 export const PetContext = createContext<IPetContext>({} as IPetContext);
@@ -71,6 +84,7 @@ const PetProvider = ({ children }: IPetProps) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [idUser, setIdUser] = useState("");
   const { toastSucess, toastFail } = useContext(UserContext);
+  const [addVaccine, setAddVaccine] = useState(false);
 
   function registerPet(formData: IRegisterPetsFunction) {
     const token = localStorage.getItem("@TOKEN");
@@ -125,6 +139,32 @@ const PetProvider = ({ children }: IPetProps) => {
 
     setDeleteModal(false);
   }
+
+  // Requisição para adicionar vacina
+
+  function addVaccinePet(formData: IRegisterVaccineFunction) {
+    const token = localStorage.getItem("@TOKEN");
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    api
+      .post<IRegisterVaccineFunction>("/vacinas", {
+        tipo: formData.tipo,
+        data: formData.data,
+        petId: parseInt(formData.petId),
+      })
+      .then((response) => {
+        toastSucess("Vacina registrada com sucesso!");
+        return response;
+      })
+      .catch((err) => {
+        toastFail("Algo deu errado, tente novamente!");
+        console.log(err);
+      });
+
+    setAddVaccine(false);
+  }
+
   return (
     <PetContext.Provider
       value={{
@@ -140,6 +180,10 @@ const PetProvider = ({ children }: IPetProps) => {
         setDeleteModal,
         setPetId,
         setIdUser,
+        petId,
+        addVaccine,
+        setAddVaccine,
+        addVaccinePet,
       }}
     >
       {children}
