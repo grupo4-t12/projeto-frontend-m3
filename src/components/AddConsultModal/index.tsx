@@ -41,7 +41,7 @@ const AddConsultModal = () => {
     <ModalContainer>
       <ModalBoxEdit>
         <div>
-          <h2>Adicionar consulta:</h2>
+          <h2>Adicionar Consulta:</h2>
           <button onClick={() => setAddConsult(false)}>X</button>
         </div>
 

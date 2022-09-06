@@ -8,6 +8,7 @@ interface IUserCardProps {
   setAddModal: (data: boolean) => void;
   listPetUser: (data: string) => void;
   setAddConsult: (data: boolean) => void;
+  setAddVaccine: (data: boolean) => void;
 }
 
 const UserCard = ({
@@ -17,6 +18,7 @@ const UserCard = ({
   setAddModal,
   listPetUser,
   setAddConsult,
+  setAddVaccine,
 }: IUserCardProps) => {
   return (
     <li className="data">
@@ -29,6 +31,14 @@ const UserCard = ({
           onClick={() => {
             setIdUser(user.id);
             setAddModal(true);
+          }}
+        />
+        <IoAddCircle
+          className="add-vaccine"
+          size={40}
+          onClick={() => {
+            setIdUser(user.id);
+            setAddVaccine(true);
           }}
         />
         <IoAddCircle

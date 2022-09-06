@@ -9,6 +9,7 @@ interface IUsersListProps {
   setAddModal: (data: boolean) => void;
   listPetUser: (data: string) => void;
   setAddConsult: (data: boolean) => void;
+  setAddVaccine: (data: boolean) => void;
 }
 
 const UsersCardList = ({
@@ -18,6 +19,7 @@ const UsersCardList = ({
   setAddModal,
   listPetUser,
   setAddConsult,
+  setAddVaccine,
 }: IUsersListProps) => {
   return (
     <ul>
@@ -30,6 +32,7 @@ const UsersCardList = ({
           setAddModal={setAddModal}
           listPetUser={listPetUser}
           setAddConsult={setAddConsult}
+          setAddVaccine={setAddVaccine}
         />
       ))}
     </ul>
