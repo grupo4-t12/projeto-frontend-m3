@@ -31,6 +31,7 @@ const UserCard = ({
             setAddModal(true);
           }}
         />
+        <IoAddCircle className="add-vacine" size={40} />
         <IoAddCircle
           className="add-consults"
           size={40}

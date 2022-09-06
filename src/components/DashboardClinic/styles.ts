@@ -188,11 +188,15 @@ export const Main = styled.main`
       align-items: flex-start;
     }
     .list-newPet {
-      width: 25%;
+      width: 20%;
       display: none;
     }
+    .list-vacine {
+      display: none;
+      width: 10%;
+    }
     .list-edit {
-      width: 35%;
+      width: 27%;
       display: flex;
       justify-content: center;
     }
@@ -210,6 +214,9 @@ export const Main = styled.main`
     .buttons-add .add-pets {
       display: none;
       margin-left: 5px;
+    }
+    .buttons-add .add-vacine {
+      display: none;
     }
     .buttons-add .add-consults {
       margin-right: 9%;
@@ -264,6 +271,9 @@ export const Main = styled.main`
       display: flex;
       align-items: flex-start;
     }
+    .pet-box .list-vacine {
+      display: block;
+    }
     .pet-box .list-edit {
       align-items: flex-end;
       justify-content: flex-end;
@@ -278,6 +288,9 @@ export const Main = styled.main`
     }
     .search-bar div input {
       width: 150px;
+    }
+    .pet-box .buttons-add .add-vacine {
+      display: block;
     }
   }
   @media (min-width: 1203px) {

@@ -97,6 +97,7 @@ function DashboardClinic() {
             <p className="list-pet">Cliente:</p>
             <p className="list-animal">E-mail:</p>
             <p className="list-newPet">Pets:</p>
+            <p className="list-vacine">Vacinas:</p>
             <p className="list-edit">Consultas:</p>
           </div>
           <div className="pet-data">
