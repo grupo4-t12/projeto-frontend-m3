@@ -30,7 +30,7 @@ const AddPetModal = () => {
     <ModalContainer>
       <ModalBoxEdit>
         <div>
-          <h2>Adicionar pet:</h2>
+          <h2>Adicionar Pet:</h2>
           <button onClick={() => setAddModal(false)}>X</button>
         </div>
 
