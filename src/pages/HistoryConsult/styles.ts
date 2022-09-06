@@ -21,25 +21,8 @@ export const Container = styled.div`
     border-radius: 0px 0px 7px 7px;
     background: var(--color-primary);
 
-    h1 {
-      display: flex;
-      gap: 7px;
-      align-items: center;
-      justify-content: center;
-
-      font-style: normal;
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 48px;
-
-      width: 245px;
-      height: 55px;
-      padding-top: 3.5rem;
-
-      color: #ffff;
-      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-      cursor: default;
+    img {
+      width: 200px;
     }
   }
 
