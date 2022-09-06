@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { TiEdit } from "react-icons/ti";
-import { IoLogOutSharp, IoTrashOutline, IoPawSharp } from "react-icons/io5";
+import { IoLogOutSharp, IoTrashOutline } from "react-icons/io5";
 
 import logo from "../../assets/img/seuPetS.png";
-import { IRegisterConsultFunction, UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import { PetContext } from "../../contexts/PetContext";
 
 import { useNavigate } from "react-router-dom";
@@ -12,12 +12,9 @@ import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { addPetSchema } from "../../validators/addPet";
 
 function HistoryConsult() {
-  const { setUser, listPets } = useContext(UserContext);
+  const { setUser, listAllConsults } = useContext(UserContext);
   const { editModal, setEditModal, deleteModal, setDeleteModal, setPetId } =
     useContext(PetContext);
 
@@ -33,11 +30,11 @@ function HistoryConsult() {
 
   return (
     <Container>
-     <header>
+      <header>
         <div className="containerHeader">
           <div className="header">
             <img
-              src={logo}
+              //src={logo}
               alt="logo-patas"
               className="animate__animated animate__heartBeat"
             />
@@ -82,29 +79,11 @@ function HistoryConsult() {
             <p className="list-edit">Consultas</p>
           </div>
           <div className="pet-data">
-            {listPets.map((pet) => (
-              <div className="data" key={pet.id}>
-                <p className="list-pet">{pet.name}</p>
-                <p className="list-animal">{pet.animal}</p>
-                <p className="list-newPet">Procedimento</p>
-                <div className="buttons list-edit">
-                  <TiEdit
-                    onClick={() => {
-                      setPetId(pet.id);
-                      setName(pet.name);
-                      setAnimal(pet.animal);
-                      setEditModal(true);
-                    }}
-                    size={28}
-                  />
-                  <IoTrashOutline
-                    onClick={() => {
-                      setPetId(pet.id);
-                      setDeleteModal(true);
-                    }}
-                    size={23}
-                  />
-                </div>
+            {listAllConsults.map((consult) => (
+              <div className="data" key={consult.id}>
+                <p className="list-procedure">{consult.procedimento}</p>
+                <p className="list-animal">{consult.animal}</p>
+                <p className="list-pet">{consult.pet}</p>
               </div>
             ))}
           </div>

@@ -24,7 +24,7 @@ interface IUserContext {
   listPetUser: (userId: string) => void;
   listConsultsUser: (idUser: string) => void;
   listConsults: IListConsults[] | [];
-  listAllConsults:  IListConsults[] | [];
+  listAllConsults: IListConsults[] | [];
   allConsults: () => void;
 }
 
@@ -102,10 +102,9 @@ export interface IListConsults {
   procedimento: string;
   pet: string;
   animal: string;
-  id: string;
   valor: string;
+  id: string;
 }
-
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
@@ -206,14 +205,11 @@ const UserProvider = ({ children }: IUserProps) => {
   //Requisição para listar todas as consultas
 
   function allConsults() {
-    api
-      .get<IListConsults>(`/consultas`)
-      .then((response) => {
-        // setListAllConsults(response.data.consultas)
-        console.log(response.data)
-      })
+    api.get<IListConsults[]>("/consultas").then((response) => {
+      setListAllConsults(response.data);
+    });
   }
-  
+
   // Requisição para adicionar consulta
 
   function addConsultUser(formData: IRegisterConsultFunction) {
@@ -250,7 +246,7 @@ const UserProvider = ({ children }: IUserProps) => {
 
         if (idUser === "1") {
           listUsersClinic();
-      
+          allConsults();
         }
       } else {
         localStorage.clear();
