@@ -72,7 +72,7 @@ const AddVaccineModal = () => {
           <label htmlFor="data">Data:</label>
           <input
             id="data"
-            placeholder="Ex: 08/09/22"
+            placeholder="Ex: Setembro, 2022"
             type="text"
             {...register("data")}
           />
