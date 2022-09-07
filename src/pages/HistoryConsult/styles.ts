@@ -162,13 +162,20 @@ export const Main = styled.main`
     }
 
     .list-cons {
-      width: 45%;
+      width: 33%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .list-value {
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .list-trash {
       width: 30%;
       display: flex;
       align-items: center;

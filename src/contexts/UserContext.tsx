@@ -1,4 +1,11 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import api from "../services/index";
 import { useNavigate } from "react-router-dom";
 import { IPet } from "./PetContext";
@@ -27,6 +34,11 @@ interface IUserContext {
   listVaccines: IListVaccine[];
   listAllConsults: IListConsults[] | [];
   allConsults: () => void;
+  deleteConsultModal: boolean;
+  setDeleteConsultModal: Dispatch<SetStateAction<boolean>>;
+  deleteConsult: () => void;
+  consultId: string;
+  setConsultId: Dispatch<SetStateAction<string>>;
 }
 
 // Interface para tipar as props:
@@ -126,6 +138,8 @@ const UserProvider = ({ children }: IUserProps) => {
   const [addConsult, setAddConsult] = useState(false);
   const [listVaccines, setListVaccines] = useState<IListVaccine[]>([]);
   const [listAllConsults, setListAllConsults] = useState<IListConsults[]>([]);
+  const [deleteConsultModal, setDeleteConsultModal] = useState(false);
+  const [consultId, setConsultId] = useState("");
 
   let navigate = useNavigate();
   const token = localStorage.getItem("@TOKEN");
@@ -251,6 +265,27 @@ const UserProvider = ({ children }: IUserProps) => {
     setAddConsult(false);
   }
 
+  // Requisição para deletar consulta
+
+  function deleteConsult() {
+    console.log(consultId);
+    const token = localStorage.getItem("@TOKEN");
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    api
+      .delete(`/consultas/${consultId}`)
+      .then((response) => {
+        toastSucess("Consulta deletada com sucesso!");
+        return response;
+      })
+      .catch((err) => {
+        toastFail("Algo deu errado, tente novamente!");
+        console.log(err);
+      });
+
+    setDeleteConsultModal(false);
+  }
+
   // Mantém a página do usuário atualizada
 
   useEffect(() => {
@@ -299,6 +334,11 @@ const UserProvider = ({ children }: IUserProps) => {
         listVaccines,
         listAllConsults,
         allConsults,
+        deleteConsultModal,
+        setDeleteConsultModal,
+        deleteConsult,
+        consultId,
+        setConsultId,
       }}
     >
       {children}
