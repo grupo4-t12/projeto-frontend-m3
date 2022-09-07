@@ -3,16 +3,21 @@ import { IoLogOutSharp, IoTrashOutline } from "react-icons/io5";
 
 import logo from "../../assets/img/seuPetS.png";
 import { UserContext } from "../../contexts/UserContext";
-import { PetContext } from "../../contexts/PetContext";
 
 import { useNavigate } from "react-router-dom";
 import petImage from "../../assets/img/petImage.png";
 
 import { Container, LinkButton, Main } from "./styles";
+import DeleteConsultModal from "../../components/DeleteConsultModal";
 
 function HistoryConsult() {
-  const { setUser, listAllConsults } = useContext(UserContext);
-  const { setDeleteModal } = useContext(PetContext);
+  const {
+    setUser,
+    listAllConsults,
+    deleteConsultModal,
+    setDeleteConsultModal,
+    setConsultId,
+  } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -80,7 +85,8 @@ function HistoryConsult() {
                 <div className="list-trash">
                   <IoTrashOutline
                     onClick={() => {
-                      setDeleteModal(true);
+                      setConsultId(consult.id);
+                      setDeleteConsultModal(true);
                     }}
                     size={23}
                   />
@@ -95,6 +101,7 @@ function HistoryConsult() {
           <span>Agende uma consulta</span>
         </aside>
       </Main>
+      {deleteConsultModal && <DeleteConsultModal />}
     </Container>
   );
 }
