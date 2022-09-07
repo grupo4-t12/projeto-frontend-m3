@@ -12,7 +12,6 @@ import { Container, LinkButton, Main } from "./styles";
 function HistoryConsult() {
   const { setUser, listAllConsults } = useContext(UserContext);
 
-
   const navigate = useNavigate();
 
   function handleClick() {
@@ -63,10 +62,10 @@ function HistoryConsult() {
           </button>
         </div>
         <div className="pet-box">
-          <h3>Histórico do cliente</h3>
+          <h3>Histórico de Atendimentos</h3>
           <div className="titles">
-            <p className="list-pet">Nome</p>
-            <p className="list-animal">Pet</p>
+            <p className="list-pet">Pet</p>
+            <p className="list-animal">Animal</p>
             <p className="list-cons">Procedimento</p>
             <p className="list-value">Valor</p>
           </div>
