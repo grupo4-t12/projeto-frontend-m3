@@ -28,19 +28,19 @@ export const Container = styled.div`
       img {
         width: 250px;
       }
+    }
 
-      .link {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        margin: 0;
-        padding: 0;
-      }
+    .link {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0;
+      padding: 0;
+    }
 
-      a {
-        padding: 0;
-        margin: 0;
-      }
+    a {
+      padding: 0;
+      margin: 0;
     }
   }
 
@@ -92,8 +92,7 @@ export const Main = styled.main`
 
   .menu {
     display: flex;
-    justify-content: center;
-    width: 90%;
+    width: 95%;
     gap: 4px;
     padding: 3px 5px;
     overflow: auto;
@@ -118,30 +117,34 @@ export const Main = styled.main`
     }
   }
 
+  @media (min-width: 530px) {
+    .menu {
+      justify-content: center;
+    }
+  }
+
   .pet-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 900px;
     width: 95%;
+    max-width: 900px;
     padding: 2.3rem;
     border-radius: 10px;
     background: #ffff;
+    overflow: auto;
 
-    h3 {
+    .pet-box > h3 {
       font-size: 26px;
-      margin-bottom: 2.5rem;
       padding: 1rem;
-    }
-
-    p {
-      font-size: 18px;
+      margin-bottom: 2.5rem;
     }
 
     .titles {
       width: 100%;
       display: flex;
       justify-content: center;
+      margin-top: 2rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid #000;
       color: var(--grey-1);
@@ -149,30 +152,30 @@ export const Main = styled.main`
 
     .list-pet {
       width: 25%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .list-animal {
       width: 35%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .list-cons {
-      width: 33%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 32%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .list-value {
       width: 30%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .list-trash {
@@ -184,12 +187,13 @@ export const Main = styled.main`
 
     .pet-data {
       width: 100%;
+      font-size: 14px;
 
       .data {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1.3rem 0px;
+        padding: 1rem 0px;
         border-bottom: 1px solid #000;
 
         .buttons {
@@ -209,10 +213,6 @@ export const Main = styled.main`
           cursor: pointer;
         }
       }
-
-      p {
-        font-size: 16px;
-      }
     }
   }
 
@@ -230,7 +230,7 @@ export const Main = styled.main`
       max-height: 100vh;
       height: 100vh;
       width: 20%;
-      padding: 1.3rem 0.5rem;
+      padding: 1.3rem 1rem;
       border-radius: 0px 10px 10px 0px;
       background: var(--color-primary);
 
@@ -240,7 +240,7 @@ export const Main = styled.main`
         line-height: 24px;
       }
 
-      button:hover {
+      .menu > button:hover {
         text-decoration: underline;
         background: inherit;
       }
