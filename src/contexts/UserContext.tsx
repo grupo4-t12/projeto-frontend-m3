@@ -268,7 +268,6 @@ const UserProvider = ({ children }: IUserProps) => {
   // Requisição para deletar consulta
 
   function deleteConsult() {
-    console.log(consultId);
     const token = localStorage.getItem("@TOKEN");
 
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
