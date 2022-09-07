@@ -204,11 +204,11 @@ const UserProvider = ({ children }: IUserProps) => {
 
   //Requisição para listar todas as consultas
 
-  function allConsults() {
+    function allConsults() {
     api.get<IListConsults[]>("/consultas").then((response) => {
       setListAllConsults(response.data);
     });
-  }
+  } 
 
   // Requisição para adicionar consulta
 

@@ -1,27 +1,19 @@
-import { useContext, useState } from "react";
-import { TiEdit } from "react-icons/ti";
-import { IoLogOutSharp, IoTrashOutline } from "react-icons/io5";
+import { useContext } from "react";
+import { IoLogOutSharp } from "react-icons/io5";
 
 import logo from "../../assets/img/seuPetS.png";
 import { UserContext } from "../../contexts/UserContext";
-import { PetContext } from "../../contexts/PetContext";
 
 import { useNavigate } from "react-router-dom";
 import petImage from "../../assets/img/petImage.png";
-import EditPetModal from "../../components/EditPetModal";
-import DeletePetModal from "../../components/DeletePetModal";
 
 import { Container, LinkButton, Main } from "./styles";
 
 function HistoryConsult() {
   const { setUser, listAllConsults } = useContext(UserContext);
-  const { editModal, setEditModal, deleteModal, setDeleteModal, setPetId } =
-    useContext(PetContext);
+
 
   const navigate = useNavigate();
-
-  const [name, setName] = useState("");
-  const [animal, setAnimal] = useState("");
 
   function handleClick() {
     localStorage.clear();
@@ -34,7 +26,7 @@ function HistoryConsult() {
         <div className="containerHeader">
           <div className="header">
             <img
-              //src={logo}
+              src={logo}
               alt="logo-patas"
               className="animate__animated animate__heartBeat"
             />
@@ -71,19 +63,20 @@ function HistoryConsult() {
           </button>
         </div>
         <div className="pet-box">
-          <h3>Clientes:</h3>
+          <h3>Histórico do cliente</h3>
           <div className="titles">
             <p className="list-pet">Nome</p>
             <p className="list-animal">Pet</p>
-            <p className="list-newPet">Procedimento</p>
-            <p className="list-edit">Consultas</p>
+            <p className="list-cons">Procedimento</p>
+            <p className="list-value">Valor</p>
           </div>
           <div className="pet-data">
             {listAllConsults.map((consult) => (
               <div className="data" key={consult.id}>
-                <p className="list-procedure">{consult.procedimento}</p>
-                <p className="list-animal">{consult.animal}</p>
                 <p className="list-pet">{consult.pet}</p>
+                <p className="list-animal">{consult.animal}</p>
+                <p className="list-cons">{consult.procedimento}</p>
+                <p className="list-value">{consult.valor}</p>
               </div>
             ))}
           </div>
@@ -94,8 +87,6 @@ function HistoryConsult() {
           <span>Agende uma consulta</span>
         </aside>
       </Main>
-      {editModal && <EditPetModal name={name} animal={animal} />}
-      {deleteModal && <DeletePetModal />}
     </Container>
   );
 }
