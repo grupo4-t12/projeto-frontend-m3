@@ -1,4 +1,11 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import api from "../services/index";
 import { useNavigate } from "react-router-dom";
 import { IPet } from "./PetContext";
@@ -24,8 +31,14 @@ interface IUserContext {
   listPetUser: (userId: string) => void;
   listConsultsUser: (idUser: string) => void;
   listConsults: IListConsults[] | [];
+  listVaccines: IListVaccine[];
   listAllConsults: IListConsults[] | [];
   allConsults: () => void;
+  deleteConsultModal: boolean;
+  setDeleteConsultModal: Dispatch<SetStateAction<boolean>>;
+  deleteConsult: () => void;
+  consultId: string;
+  setConsultId: Dispatch<SetStateAction<string>>;
 }
 
 // Interface para tipar as props:
@@ -106,6 +119,15 @@ export interface IListConsults {
   id: string;
 }
 
+// Interface para função listVaccinePet
+
+export interface IListVaccine {
+  tipo: string;
+  data: string;
+  petId: string;
+  id: string;
+}
+
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProps) => {
@@ -114,7 +136,10 @@ const UserProvider = ({ children }: IUserProps) => {
   const [listPets, setListPets] = useState<IPet[]>([]);
   const [listConsults, setListConsults] = useState<IListConsults[]>([]);
   const [addConsult, setAddConsult] = useState(false);
+  const [listVaccines, setListVaccines] = useState<IListVaccine[]>([]);
   const [listAllConsults, setListAllConsults] = useState<IListConsults[]>([]);
+  const [deleteConsultModal, setDeleteConsultModal] = useState(false);
+  const [consultId, setConsultId] = useState("");
 
   let navigate = useNavigate();
   const token = localStorage.getItem("@TOKEN");
@@ -202,6 +227,14 @@ const UserProvider = ({ children }: IUserProps) => {
       });
   }
 
+  // Requisição para listar vacinas dos pets
+
+  function listVaccinePet() {
+    api.get<IListVaccine[]>("/vacinas").then((response) => {
+      setListVaccines(response.data);
+    });
+  }
+
   //Requisição para listar todas as consultas
 
   function allConsults() {
@@ -232,6 +265,26 @@ const UserProvider = ({ children }: IUserProps) => {
     setAddConsult(false);
   }
 
+  // Requisição para deletar consulta
+
+  function deleteConsult() {
+    const token = localStorage.getItem("@TOKEN");
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    api
+      .delete(`/consultas/${consultId}`)
+      .then((response) => {
+        toastSucess("Consulta deletada com sucesso!");
+        return response;
+      })
+      .catch((err) => {
+        toastFail("Algo deu errado, tente novamente!");
+        console.log(err);
+      });
+
+    setDeleteConsultModal(false);
+  }
+
   // Mantém a página do usuário atualizada
 
   useEffect(() => {
@@ -243,6 +296,7 @@ const UserProvider = ({ children }: IUserProps) => {
 
         listPetUser(idUser);
         listConsultsUser(idUser);
+        listVaccinePet();
 
         if (idUser === "1") {
           listUsersClinic();
@@ -276,8 +330,14 @@ const UserProvider = ({ children }: IUserProps) => {
         listPetUser,
         listConsults,
         listConsultsUser,
+        listVaccines,
         listAllConsults,
         allConsults,
+        deleteConsultModal,
+        setDeleteConsultModal,
+        deleteConsult,
+        consultId,
+        setConsultId,
       }}
     >
       {children}

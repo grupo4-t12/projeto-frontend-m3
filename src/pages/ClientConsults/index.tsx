@@ -9,9 +9,12 @@ import { UserContext } from "../../contexts/UserContext";
 
 import { Main } from "./styles";
 import { Container, LinkButton } from "../../components/DashboardClient/styles";
+import { PetContext } from "../../contexts/PetContext";
+import VaccinesModal from "../../components/VaccinesModal";
 
 function ClientConsult() {
   const { setUser, listConsults } = useContext(UserContext);
+  const { vaccineModal, setVaccineModal } = useContext(PetContext);
   const navigate = useNavigate();
 
   function handleClick() {
@@ -44,7 +47,7 @@ function ClientConsult() {
           <button onClick={() => navigate("/dashboard/consults")}>
             Consultas
           </button>
-          <button>Vacinas</button>
+          <button onClick={() => setVaccineModal(true)}>Vacinas</button>
           <button
             onClick={() => {
               window.open("https://calendly.com/axeellima/seupet-consulta");
@@ -76,6 +79,7 @@ function ClientConsult() {
           <span>Agende uma consulta</span>
         </aside>
       </Main>
+      {vaccineModal && <VaccinesModal />}
     </Container>
   );
 }

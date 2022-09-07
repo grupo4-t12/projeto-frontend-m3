@@ -178,6 +178,13 @@ export const Main = styled.main`
       white-space: nowrap;
     }
 
+    .list-trash {
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .pet-data {
       width: 100%;
       font-size: 14px;
