@@ -9,24 +9,24 @@ const VaccinesModal = () => {
 
   return (
     <ModalContainer>
-      {listVaccines.map((vaccine) =>
-        listPets.map(
-          (pet) =>
-            vaccine.petId === pet.id && (
-              <ModalBoxVaccines key={pet.id}>
-                <div className="title">
-                  <h2>{pet.name}</h2>
-                  <button onClick={() => setVaccineModal(false)}>X</button>
-                </div>
-                <div className="list">
-                  <h3>Histórico de vacinas:</h3>
+      {listPets.map((pet) => (
+        <ModalBoxVaccines key={pet.id}>
+          <div className="title">
+            <h2>{pet.name}</h2>
+            <button onClick={() => setVaccineModal(false)}>X</button>
+          </div>
+          <h3>Histórico de vacinas:</h3>
+          {listVaccines.map(
+            (vaccine) =>
+              vaccine.petId === pet.id && (
+                <div key={vaccine.id} className="list">
                   <p>{vaccine.tipo}</p>
                   <span>Data: {vaccine.data}</span>
                 </div>
-              </ModalBoxVaccines>
-            )
-        )
-      )}
+              )
+          )}
+        </ModalBoxVaccines>
+      ))}
     </ModalContainer>
   );
 };

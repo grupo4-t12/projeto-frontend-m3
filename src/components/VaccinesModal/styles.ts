@@ -50,6 +50,10 @@ export const ModalBoxVaccines = styled.div`
     }
   }
 
+  h3 {
+    margin-bottom: 1rem;
+  }
+
   .list {
     display: flex;
     flex-direction: column;
