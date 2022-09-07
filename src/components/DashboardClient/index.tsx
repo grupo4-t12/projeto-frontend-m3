@@ -8,6 +8,7 @@ import { PetContext } from "../../contexts/PetContext";
 import petImage from "../../assets/img/petImage.png";
 import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
+import VaccinesModal from "../VaccinesModal";
 
 import { Container, LinkButton, Main } from "./styles";
 import { Toaster } from "react-hot-toast";
@@ -15,8 +16,15 @@ import { useNavigate } from "react-router-dom";
 
 function DashboardClient() {
   const { setUser, listPets } = useContext(UserContext);
-  const { editModal, setEditModal, deleteModal, setDeleteModal, setPetId } =
-    useContext(PetContext);
+  const {
+    editModal,
+    setEditModal,
+    deleteModal,
+    setDeleteModal,
+    setPetId,
+    vaccineModal,
+    setVaccineModal,
+  } = useContext(PetContext);
 
   const [name, setName] = useState("");
   const [animal, setAnimal] = useState("");
@@ -44,7 +52,7 @@ function DashboardClient() {
           <button onClick={() => navigate("/dashboard/consults")}>
             Consultas
           </button>
-          <button>Vacinas</button>
+          <button onClick={() => setVaccineModal(true)}>Vacinas</button>
           <button
             onClick={() => {
               window.open("https://calendly.com/axeellima/seupet-consulta");
@@ -95,6 +103,7 @@ function DashboardClient() {
       </Main>
       {editModal && <EditPetModal name={name} animal={animal} />}
       {deleteModal && <DeletePetModal />}
+      {vaccineModal && <VaccinesModal />}
     </Container>
   );
 }

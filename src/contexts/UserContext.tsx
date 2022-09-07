@@ -24,6 +24,7 @@ interface IUserContext {
   listPetUser: (userId: string) => void;
   listConsultsUser: (idUser: string) => void;
   listConsults: IListConsults[] | [];
+  listVaccines: IListVaccine[];
   listAllConsults: IListConsults[] | [];
   allConsults: () => void;
 }
@@ -106,6 +107,15 @@ export interface IListConsults {
   id: string;
 }
 
+// Interface para função listVaccinePet
+
+export interface IListVaccine {
+  tipo: string;
+  data: string;
+  petId: string;
+  id: string;
+}
+
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProps) => {
@@ -114,6 +124,7 @@ const UserProvider = ({ children }: IUserProps) => {
   const [listPets, setListPets] = useState<IPet[]>([]);
   const [listConsults, setListConsults] = useState<IListConsults[]>([]);
   const [addConsult, setAddConsult] = useState(false);
+  const [listVaccines, setListVaccines] = useState<IListVaccine[]>([]);
   const [listAllConsults, setListAllConsults] = useState<IListConsults[]>([]);
 
   let navigate = useNavigate();
@@ -202,6 +213,14 @@ const UserProvider = ({ children }: IUserProps) => {
       });
   }
 
+  // Requisição para listar vacinas dos pets
+
+  function listVaccinePet() {
+    api.get<IListVaccine[]>("/vacinas").then((response) => {
+      setListVaccines(response.data);
+    });
+  }
+
   //Requisição para listar todas as consultas
 
   function allConsults() {
@@ -243,6 +262,7 @@ const UserProvider = ({ children }: IUserProps) => {
 
         listPetUser(idUser);
         listConsultsUser(idUser);
+        listVaccinePet();
 
         if (idUser === "1") {
           listUsersClinic();
@@ -276,6 +296,7 @@ const UserProvider = ({ children }: IUserProps) => {
         listPetUser,
         listConsults,
         listConsultsUser,
+        listVaccines,
         listAllConsults,
         allConsults,
       }}
