@@ -62,6 +62,7 @@ function HistoryConsult() {
             Agendamentos
           </button>
         </div>
+
         <div className="pet-box">
           <h3>Histórico do cliente</h3>
           <div className="titles">
@@ -70,6 +71,8 @@ function HistoryConsult() {
             <p className="list-cons">Procedimento</p>
             <p className="list-value">Valor</p>
           </div>
+
+
           <div className="pet-data">
             {listAllConsults.map((consult) => (
               <div className="data" key={consult.id}>
@@ -78,6 +81,8 @@ function HistoryConsult() {
                 <p className="list-cons">{consult.procedimento}</p>
                 <p className="list-value">{consult.valor}</p>
               </div>
+
+
             ))}
           </div>
         </div>
