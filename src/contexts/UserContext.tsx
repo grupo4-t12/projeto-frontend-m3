@@ -24,6 +24,7 @@ interface IUserContext {
   listPetUser: (userId: string) => void;
   listConsultsUser: (idUser: string) => void;
   listConsults: IListConsults[] | [];
+  listVaccines: IListVaccine[];
 }
 
 // Interface para tipar as props:
@@ -103,6 +104,15 @@ export interface IListConsults {
   id: string;
 }
 
+// Interface para função listVaccinePet
+
+export interface IListVaccine {
+  tipo: string;
+  data: string;
+  petId: string;
+  id: string;
+}
+
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProps) => {
@@ -111,6 +121,7 @@ const UserProvider = ({ children }: IUserProps) => {
   const [listPets, setListPets] = useState<IPet[]>([]);
   const [listConsults, setListConsults] = useState<IListConsults[]>([]);
   const [addConsult, setAddConsult] = useState(false);
+  const [listVaccines, setListVaccines] = useState<IListVaccine[]>([]);
 
   let navigate = useNavigate();
   const token = localStorage.getItem("@TOKEN");
@@ -198,6 +209,14 @@ const UserProvider = ({ children }: IUserProps) => {
       });
   }
 
+  // Requisição para listar vacinas dos pets - cliente
+
+  function listVaccinePet() {
+    api.get<IPet>("/pets?_embed=vacinas").then((response) => {
+      //setListVaccines(response.data.vacinas)
+    });
+  }
+
   // Requisição para adicionar consulta
 
   function addConsultUser(formData: IRegisterConsultFunction) {
@@ -231,6 +250,7 @@ const UserProvider = ({ children }: IUserProps) => {
 
         listPetUser(idUser);
         listConsultsUser(idUser);
+        listVaccinePet();
 
         if (idUser === "1") {
           listUsersClinic();
@@ -263,6 +283,7 @@ const UserProvider = ({ children }: IUserProps) => {
         listPetUser,
         listConsults,
         listConsultsUser,
+        listVaccines,
       }}
     >
       {children}

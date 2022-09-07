@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import api from "../services";
-import { UserContext } from "./UserContext";
+import { IListVaccine, UserContext } from "./UserContext";
 
 interface IPetContext {
   registerPet: (data: IRegisterPetsFunction) => void;
@@ -65,6 +65,7 @@ export interface IPet {
   name: string;
   animal: string;
   id: string;
+  vacinas: IListVaccine[];
 }
 
 // Interface para a criação de vacina
