@@ -1,9 +1,11 @@
 Repositório criado para realizar a entrega do Projeto Front-End (projeto final da primeira metade do curso de Desenvolvimento Web
-Full Stack na Kenzie Academy Brasil):
+Full-Stack na Kenzie Academy Brasil):
 
 Documentação do nosso projeto (Notion): https://www.notion.so/SEUPET-Projeto-Front-End-ae965cac782b4b7aa7bac541f2f10f83
 
 Documentação da "Fake-API" (json-server) utilizada na aplicação: https://github.com/grupo4-t12/json-server-base/blob/master/README.md
+
+Deploy da Aplicação (Vercel): https://projeto-frontend-m3.vercel.app/
 
 Algumas observações sobre o repositório:
 
