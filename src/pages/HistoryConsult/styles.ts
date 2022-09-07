@@ -165,7 +165,7 @@ export const Main = styled.main`
     }
 
     .list-cons {
-      width: 45%;
+      width: 32%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
