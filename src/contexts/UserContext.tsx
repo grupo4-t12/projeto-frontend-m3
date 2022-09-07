@@ -213,11 +213,11 @@ const UserProvider = ({ children }: IUserProps) => {
       });
   }
 
-  // Requisição para listar vacinas dos pets - cliente
+  // Requisição para listar vacinas dos pets
 
   function listVaccinePet() {
-    api.get<IPet>("/pets?_embed=vacinas").then((response) => {
-      setListVaccines(response.data.vacinas);
+    api.get<IListVaccine[]>("/vacinas").then((response) => {
+      setListVaccines(response.data);
     });
   }
 

@@ -27,6 +27,8 @@ interface IPetContext {
   addVaccine: boolean;
   setAddVaccine: (data: boolean) => void;
   addVaccinePet: (FormData: IRegisterVaccineFunction) => void;
+  vaccineModal: boolean;
+  setVaccineModal: Dispatch<SetStateAction<boolean>>;
 }
 
 // Interface para tipar as props:
@@ -64,6 +66,7 @@ export interface IEditPet {
 export interface IPet {
   name: string;
   animal: string;
+  userId: string;
   id: string;
   vacinas: IListVaccine[];
 }
@@ -86,6 +89,7 @@ const PetProvider = ({ children }: IPetProps) => {
   const [idUser, setIdUser] = useState("");
   const { toastSucess, toastFail } = useContext(UserContext);
   const [addVaccine, setAddVaccine] = useState(false);
+  const [vaccineModal, setVaccineModal] = useState(false);
 
   function registerPet(formData: IRegisterPetsFunction) {
     const token = localStorage.getItem("@TOKEN");
@@ -185,6 +189,8 @@ const PetProvider = ({ children }: IPetProps) => {
         addVaccine,
         setAddVaccine,
         addVaccinePet,
+        vaccineModal,
+        setVaccineModal,
       }}
     >
       {children}
