@@ -124,7 +124,7 @@ const UserProvider = ({ children }: IUserProps) => {
   const [listPets, setListPets] = useState<IPet[]>([]);
   const [listConsults, setListConsults] = useState<IListConsults[]>([]);
   const [addConsult, setAddConsult] = useState(false);
-  const [listVaccines] = useState<IListVaccine[]>([]);
+  const [listVaccines, setListVaccines] = useState<IListVaccine[]>([]);
   const [listAllConsults, setListAllConsults] = useState<IListConsults[]>([]);
 
   let navigate = useNavigate();
@@ -217,7 +217,7 @@ const UserProvider = ({ children }: IUserProps) => {
 
   function listVaccinePet() {
     api.get<IPet>("/pets?_embed=vacinas").then((response) => {
-      //setListVaccines(response.data.vacinas)
+      setListVaccines(response.data.vacinas);
     });
   }
 
