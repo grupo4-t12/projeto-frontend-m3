@@ -9,46 +9,6 @@ const VaccinesModal = () => {
 
   return (
     <ModalContainer>
-      {/* <ModalBoxVaccines>
-        <div className="title">
-          <h2>Thor</h2>
-          <button onClick={() => setVaccineModal(false)}>X</button>
-        </div>
-        <div className="list">
-          <h3>Histórico de vacinas:</h3>
-          <div>
-            <input type="checkbox" id="Vermífugo" />
-            <label htmlFor="Vermífugo">Vermífugo</label>
-          </div>
-          <p>Data: 22/06/21</p>
-
-          <div>
-            <input type="checkbox" id="V8 - 1°" />
-            <label htmlFor="V8 - 1°">V8 - 1°</label>
-          </div>
-          <p>Data: 18/07/21</p>
-        </div>
-      </ModalBoxVaccines>
-      <ModalBoxVaccines>
-        <div className="title">
-          <h2>Thor</h2>
-          <button onClick={() => setVaccineModal(false)}>X</button>
-        </div>
-        <div className="list">
-          <h3>Histórico de vacinas:</h3>
-          <div>
-            <input type="checkbox" id="Vermífugo2" />
-            <label htmlFor="Vermífugo2">Vermífugo</label>
-          </div>
-          <p>Data: 22/06/21</p>
-
-          <div>
-            <input type="checkbox" id="V8 - 1°2" />
-            <label htmlFor="V8 - 1°2">V8 - 1°</label>
-          </div>
-          <p>Data: 18/07/21</p>
-        </div>
-      </ModalBoxVaccines> */}
       {listVaccines.map((vaccine) =>
         listPets.map(
           (pet) =>
@@ -60,11 +20,8 @@ const VaccinesModal = () => {
                 </div>
                 <div className="list">
                   <h3>Histórico de vacinas:</h3>
-                  <div key={vaccine.id}>
-                    <input type="checkbox" id={vaccine.tipo} />
-                    <label htmlFor={vaccine.tipo}>{vaccine.tipo}</label>
-                  </div>
-                  <p>Data: {vaccine.data}</p>
+                  <p>{vaccine.tipo}</p>
+                  <span>Data: {vaccine.data}</span>
                 </div>
               </ModalBoxVaccines>
             )
