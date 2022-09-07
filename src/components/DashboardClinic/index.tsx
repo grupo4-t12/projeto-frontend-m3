@@ -78,7 +78,7 @@ function DashboardClinic() {
           </button>
           <button
             onClick={() => {
-              window.open("https://calendly.com/axeellima/seupet-consulta");
+              window.open("https://calendly.com/app/scheduled_events/user/me");
             }}
           >
             Agendamentos

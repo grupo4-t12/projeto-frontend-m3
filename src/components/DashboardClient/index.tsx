@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { TiEdit } from "react-icons/ti";
-import { IoLogOutSharp, IoTrashOutline, IoPawSharp } from "react-icons/io5";
+import { IoLogOutSharp, IoTrashOutline } from "react-icons/io5";
 
 import { UserContext } from "../../contexts/UserContext";
 import { PetContext } from "../../contexts/PetContext";
@@ -40,7 +40,7 @@ function DashboardClient() {
     <Container>
       <Toaster position="top-right" reverseOrder={true} />
       <header>
-      <div className="containerHeader">
+        <div className="containerHeader">
           <div className="header">
             <img
               src={logo}
@@ -64,7 +64,7 @@ function DashboardClient() {
           <button onClick={() => setVaccineModal(true)}>Vacinas</button>
           <button
             onClick={() => {
-              window.open("https://calendly.com/axeellima/seupet-consulta");
+              window.open("https://calendly.com/clinicaseupet/agendamento");
             }}
           >
             Agendamentos
