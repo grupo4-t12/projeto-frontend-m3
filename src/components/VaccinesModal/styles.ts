@@ -50,26 +50,24 @@ export const ModalBoxVaccines = styled.div`
     }
   }
 
+  h3 {
+    margin-bottom: 1rem;
+  }
+
   .list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
-    div {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-
-      label {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 22px;
-        color: var(--grey-1);
-        cursor: pointer;
-      }
+    p {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
+      color: var(--grey-1);
+      cursor: pointer;
     }
 
-    p {
+    span {
       margin-bottom: 2rem;
       font-weight: 700;
       font-size: 16px;
