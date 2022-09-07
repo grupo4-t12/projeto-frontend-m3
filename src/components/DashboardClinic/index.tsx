@@ -36,7 +36,7 @@ function DashboardClinic() {
   function searchUser(inputValue: string) {
     setFilteredUsers(
       listUsers.filter((element) =>
-        element.name.toLowerCase().includes(inputValue)
+        element.name.toLowerCase().includes(inputValue.toLowerCase())
       )
     );
   }
