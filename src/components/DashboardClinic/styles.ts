@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   gap: 1rem;
   flex-direction: column;
-
   padding-bottom: 1rem;
   background: var(--white);
 
@@ -206,7 +205,6 @@ export const Main = styled.main`
     .titles {
       width: 100%;
       display: flex;
-
       padding-bottom: 1.5rem;
       margin-top: 1.5rem;
       border-bottom: 1px solid #000;

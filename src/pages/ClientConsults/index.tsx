@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { IoLogOutSharp, IoPawSharp } from "react-icons/io5";
+import { IoLogOutSharp } from "react-icons/io5";
 
+import logo from "../../assets/img/seuPetS.png";
 import petImage from "../../assets/img/petImage.png";
 import { UserContext } from "../../contexts/UserContext";
 
@@ -22,12 +23,20 @@ function ClientConsult() {
     <Container>
       <Toaster position="top-right" reverseOrder={true} />
       <header>
-        <h1>
-          SEU PET <IoPawSharp />
-        </h1>
-        <LinkButton onClick={handleClick} to="/">
-          <IoLogOutSharp size={30} />
-        </LinkButton>
+      <div className="containerHeader">
+          <div className="header">
+            <img
+              src={logo}
+              alt="logo-patas"
+              className="animate__animated animate__heartBeat"
+            />
+          </div>
+        </div>
+        <div className="link">
+          <LinkButton className="tagLink" onClick={handleClick} to="/">
+            <IoLogOutSharp className="imgLink" size={30} />
+          </LinkButton>
+        </div>
       </header>
       <Main>
         <div className="menu">
@@ -45,11 +54,11 @@ function ClientConsult() {
           </button>
         </div>
         <div className="consults-box">
-          <h3>Histórico de consultas:</h3>
+          <h3>Histórico de consultas</h3>
           <div className="titles">
-            <p className="list-procedure">Procedimento:</p>
-            <p className="list-animal">Animal:</p>
-            <p className="list-pet">Pet:</p>
+            <p className="list-procedure">Procedimento</p>
+            <p className="list-animal">Animal</p>
+            <p className="list-pet">Pet</p>
           </div>
           <div className="consult-data">
             {listConsults.map((consult) => (

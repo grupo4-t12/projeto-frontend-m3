@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { IoLogOutSharp, IoPawSharp, IoAddCircle } from "react-icons/io5";
+import { IoLogOutSharp, IoAddCircle } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 
 import { UserContext } from "../../contexts/UserContext";
