@@ -16,12 +16,18 @@ import { useNavigate } from "react-router-dom";
 
 function DashboardClient() {
   const { setUser, listPets } = useContext(UserContext);
-  const { editModal, setEditModal, deleteModal, setDeleteModal, setPetId } =
-    useContext(PetContext);
+  const {
+    editModal,
+    setEditModal,
+    deleteModal,
+    setDeleteModal,
+    setPetId,
+    vaccineModal,
+    setVaccineModal,
+  } = useContext(PetContext);
 
   const [name, setName] = useState("");
   const [animal, setAnimal] = useState("");
-  const [vaccineModal, setVaccineModal] = useState(false);
   const navigate = useNavigate();
 
   function handleClick() {
@@ -97,7 +103,7 @@ function DashboardClient() {
       </Main>
       {editModal && <EditPetModal name={name} animal={animal} />}
       {deleteModal && <DeletePetModal />}
-      {vaccineModal && <VaccinesModal setVaccineModal={setVaccineModal} />}
+      {vaccineModal && <VaccinesModal />}
     </Container>
   );
 }
