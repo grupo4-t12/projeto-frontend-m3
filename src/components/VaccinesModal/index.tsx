@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { PetContext } from "../../contexts/PetContext";
 import { UserContext } from "../../contexts/UserContext";
-import { ModalBoxVaccines, ModalContainer } from "./styles";
+import { ModalBoxVaccines, ModalContainer, NoPetBoxVaccines } from "./styles";
 
 const VaccinesModal = () => {
   const { listPets, listVaccines } = useContext(UserContext);
   const { setVaccineModal } = useContext(PetContext);
 
-  return (
+  return listPets.length > 0 ? (
     <ModalContainer>
       {listPets.map((pet) => {
         const filteredVaccines = listVaccines.filter(
@@ -32,7 +32,7 @@ const VaccinesModal = () => {
             )}
           </ModalBoxVaccines>
         ) : (
-          <ModalBoxVaccines key={pet.id}>
+          <ModalBoxVaccines>
             <div className="title">
               <h2>{pet.name}</h2>
               <button onClick={() => setVaccineModal(false)}>X</button>
@@ -42,6 +42,13 @@ const VaccinesModal = () => {
           </ModalBoxVaccines>
         );
       })}
+    </ModalContainer>
+  ) : (
+    <ModalContainer>
+      <NoPetBoxVaccines>
+        <button onClick={() => setVaccineModal(false)}>X</button>
+        <p>Você ainda não possui pets registrados em sua conta!</p>
+      </NoPetBoxVaccines>
     </ModalContainer>
   );
 };
