@@ -80,3 +80,37 @@ export const ModalBoxVaccines = styled.div`
     }
   }
 `;
+
+export const NoPetBoxVaccines = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  max-width: 350px;
+  width: 100%;
+
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+
+  background: var(--white);
+  box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+
+  button {
+    width: 18px;
+    height: 29px;
+
+    font-weight: 700;
+    font-size: 24px;
+
+    border: none;
+    color: var(--fail);
+    background: inherit;
+  }
+
+  p {
+    margin-top: 3%;
+    color: var(--grey-1);
+    margin-bottom: 0.5rem;
+  }
+`;
