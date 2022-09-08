@@ -69,10 +69,12 @@ export const Container = styled.div`
     }
   }
   @media (min-width: 1450px) {
+    img {
+      width: 100%;
+    }
     aside {
-      width: 20%;
-      height: 60%;
-      padding: 1rem;
+      width: 220px;
+      height: 280px;
     }
   }
 `;
@@ -149,7 +151,12 @@ export const Main = styled.main`
       border-bottom: 1px solid #000;
       color: var(--grey-1);
     }
-
+    .list-name {
+      width: 20%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     .list-pet {
       width: 25%;
       overflow: hidden;
@@ -165,7 +172,7 @@ export const Main = styled.main`
     }
 
     .list-cons {
-      width: 32%;
+      width: 35%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

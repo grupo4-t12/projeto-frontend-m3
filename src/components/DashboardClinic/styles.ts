@@ -69,10 +69,12 @@ export const Container = styled.div`
     }
   }
   @media (min-width: 1450px) {
+    img {
+      width: 100%;
+    }
     aside {
-      width: 20%;
-      height: 60%;
-      padding: 1rem;
+      width: 220px;
+      height: 280px;
     }
   }
 `;
@@ -218,26 +220,29 @@ export const Main = styled.main`
       white-space: nowrap;
     }
 
-    .list-animal {
-      width: 35%;
+    .list-email {
+      width: 36%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .list-newPet {
+      width: 20%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .list-vaccine {
+      width: 20%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .list-edit {
+      width: 20%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -247,27 +252,24 @@ export const Main = styled.main`
       width: 50%;
       display: flex;
       justify-content: center;
+      display: flex;
+      justify-content: flex-start;
+      gap: 5px;
     }
 
     .buttons-add svg {
       color: var(--color-primary);
     }
-
-    .buttons-add {
-      display: flex;
-      justify-content: space-between;
-    }
-
     .add-pets {
-      width: 20%;
+      width: 33%;
     }
 
     .add-vaccine {
-      width: 20%;
+      width: 33%;
     }
 
     .add-consults {
-      width: 20%;
+      width: 33%;
     }
 
     .pet-data {
@@ -300,7 +302,19 @@ export const Main = styled.main`
       }
     }
   }
+  @media (min-width: 450px) {
+    .buttons-add .add-pets {
+      width: 20%;
+    }
 
+    .buttons-add .add-vaccine {
+      width: 50%;
+    }
+
+    .buttons-add .add-consults {
+      width: 20%;
+    }
+  }
   @media (min-width: 1450px) {
     justify-content: space-between;
     flex-wrap: nowrap;

@@ -25,7 +25,9 @@ function HistoryConsult() {
     localStorage.clear();
     setUser(null);
   }
-
+  const filteredUserHaveConsult = listAllConsults.filter((usuario) => {
+    return usuario.consultas.length > 0;
+  });
   return (
     <Container>
       <header>
@@ -72,32 +74,34 @@ function HistoryConsult() {
         <div className="pet-box">
           <h3>Histórico de Atendimentos</h3>
           <div className="titles">
+            <p className="list-name">Cliente</p>
             <p className="list-pet">Pet</p>
             <p className="list-animal">Procedimento</p>
             <p className="list-cons">Valor</p>
             <p className="list-value">Deletar</p>
           </div>
 
-
           <div className="pet-data">
-            {listAllConsults.map((consult) => (
-              <div className="data" key={consult.id}>
-                <p className="list-pet">{consult.pet}</p>
-                <p className="list-cons">{consult.procedimento}</p>
-                <p className="list-value">{consult.valor}</p>
-                <div className="list-trash">
-                  <IoTrashOutline
-                    onClick={() => {
-                      setConsultId(consult.id);
-                      setDeleteConsultModal(true);
-                    }}
-                    size={23}
-                  />
+            {filteredUserHaveConsult.map((user) =>
+              user.consultas.map((consulta) => (
+                <div className="data" key={consulta.id}>
+                  <p className="list-name">{user.name}</p>
+                  <p className="list-pet">{consulta.pet}</p>
+                  <p className="list-cons">{consulta.procedimento}</p>
+                  <p className="list-value">{consulta.valor}</p>
+                  <div className="list-trash">
+                    <IoTrashOutline
+                      onClick={() => {
+                        setConsultId(consulta.id);
+                        setDeleteConsultModal(true);
+                        console.log(user);
+                      }}
+                      size={23}
+                    />
+                  </div>
                 </div>
-              </div>
-
-
-            ))}
+              ))
+            )}
           </div>
         </div>
         <aside>
