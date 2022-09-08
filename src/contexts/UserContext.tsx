@@ -32,7 +32,7 @@ interface IUserContext {
   listConsultsUser: (idUser: string) => void;
   listConsults: IListConsults[] | [];
   listVaccines: IListVaccine[];
-  listAllConsults: IListConsults[] | [];
+  listAllConsults: IAllConsults[] | [];
   allConsults: () => void;
   deleteConsultModal: boolean;
   setDeleteConsultModal: Dispatch<SetStateAction<boolean>>;
@@ -108,8 +108,16 @@ export interface IRegisterConsultFunction {
   userId: string;
   id: string;
 }
-
 // Interface para a resposta de listagem de consultas
+export interface IAllConsults {
+  name: string;
+  password: string;
+  email: string;
+  id: string;
+  consultas: IListConsults[];
+}
+
+// Interface para a resposta de consultas
 
 export interface IListConsults {
   procedimento: string;
@@ -137,7 +145,7 @@ const UserProvider = ({ children }: IUserProps) => {
   const [listConsults, setListConsults] = useState<IListConsults[]>([]);
   const [addConsult, setAddConsult] = useState(false);
   const [listVaccines, setListVaccines] = useState<IListVaccine[]>([]);
-  const [listAllConsults, setListAllConsults] = useState<IListConsults[]>([]);
+  const [listAllConsults, setListAllConsults] = useState<IAllConsults[]>([]);
   const [deleteConsultModal, setDeleteConsultModal] = useState(false);
   const [consultId, setConsultId] = useState("");
 
@@ -238,7 +246,7 @@ const UserProvider = ({ children }: IUserProps) => {
   //Requisição para listar todas as consultas
 
   function allConsults() {
-    api.get<IListConsults[]>("/consultas").then((response) => {
+    api.get<IAllConsults[]>("/users?_embed=consultas").then((response) => {
       setListAllConsults(response.data);
     });
   }

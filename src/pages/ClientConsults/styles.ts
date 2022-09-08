@@ -68,10 +68,12 @@ export const Main = styled.main`
     }
   }
   @media (min-width: 1450px) {
+    img {
+      width: 100%;
+    }
     aside {
-      width: 20%;
-      height: 60%;
-      padding: 1rem;
+      width: 220px;
+      height: 280px;
     }
   }
 
@@ -168,6 +170,7 @@ export const Main = styled.main`
         justify-content: space-between;
         padding: 0.5rem 0px;
         border-bottom: 1px solid #000;
+        height: 42px;
       }
     }
   }
