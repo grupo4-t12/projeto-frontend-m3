@@ -83,24 +83,27 @@ function HistoryConsult() {
 
           <div className="pet-data">
             {filteredUserHaveConsult.map((user) =>
-              user.consultas.map((consulta) => (
-                <div className="data" key={consulta.id}>
-                  <p className="list-name">{user.name}</p>
-                  <p className="list-pet">{consulta.pet}</p>
-                  <p className="list-cons">{consulta.procedimento}</p>
-                  <p className="list-value">{consulta.valor}</p>
-                  <div className="list-trash">
-                    <IoTrashOutline
-                      onClick={() => {
-                        setConsultId(consulta.id);
-                        setDeleteConsultModal(true);
-                        console.log(user);
-                      }}
-                      size={23}
-                    />
+              user.consultas
+                .slice()
+                .reverse()
+                .map((consulta) => (
+                  <div className="data" key={consulta.id}>
+                    <p className="list-name">{user.name}</p>
+                    <p className="list-pet">{consulta.pet}</p>
+                    <p className="list-cons">{consulta.procedimento}</p>
+                    <p className="list-value">{consulta.valor}</p>
+                    <div className="list-trash">
+                      <IoTrashOutline
+                        onClick={() => {
+                          setConsultId(consulta.id);
+                          setDeleteConsultModal(true);
+                          console.log(user);
+                        }}
+                        size={23}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))
+                ))
             )}
           </div>
         </div>
