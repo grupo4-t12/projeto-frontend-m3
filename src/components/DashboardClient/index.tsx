@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { TiEdit } from "react-icons/ti";
-import { IoLogOutSharp, IoTrashOutline, IoPawSharp } from "react-icons/io5";
+import { IoLogOutSharp, IoTrashOutline } from "react-icons/io5";
 
 import { UserContext } from "../../contexts/UserContext";
 import { PetContext } from "../../contexts/PetContext";
 
+import logo from "../../assets/img/seuPetS.png";
 import petImage from "../../assets/img/petImage.png";
 import EditPetModal from "../../components/EditPetModal";
 import DeletePetModal from "../../components/DeletePetModal";
@@ -39,12 +40,20 @@ function DashboardClient() {
     <Container>
       <Toaster position="top-right" reverseOrder={true} />
       <header>
-        <h1>
-          SEU PET <IoPawSharp />
-        </h1>
-        <LinkButton onClick={handleClick} to="/">
-          <IoLogOutSharp size={30} />
-        </LinkButton>
+        <div className="containerHeader">
+          <div className="header">
+            <img
+              src={logo}
+              alt="logo-patas"
+              className="animate__animated animate__heartBeat"
+            />
+          </div>
+        </div>
+        <div className="link">
+          <LinkButton className="tagLink" onClick={handleClick} to="/">
+            <IoLogOutSharp className="imgLink" size={30} />
+          </LinkButton>
+        </div>
       </header>
       <Main>
         <div className="menu">
@@ -55,18 +64,18 @@ function DashboardClient() {
           <button onClick={() => setVaccineModal(true)}>Vacinas</button>
           <button
             onClick={() => {
-              window.open("https://calendly.com/axeellima/seupet-consulta");
+              window.open("https://calendly.com/clinicaseupet/agendamento");
             }}
           >
             Agendamentos
           </button>
         </div>
         <div className="pet-box">
-          <h3>Meus Pets:</h3>
+          <h3>Meus Pets</h3>
           <div className="pet-info">
-            <p className="list-pet">Pet:</p>
-            <p className="list-animal">Animal:</p>
-            <p className="list-edit">Editar:</p>
+            <p className="list-pet">Pet</p>
+            <p className="list-animal">Animal</p>
+            <p className="list-edit">Editar</p>
           </div>
           <div className="pet-data">
             {listPets.map((pet) => (

@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   gap: 1rem;
   flex-direction: column;
-
   padding-bottom: 1rem;
   background: var(--white);
 
@@ -14,45 +13,45 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
+    gap: 1rem;
     height: 170px;
     padding: 0px 3rem;
-
     border-radius: 0px 0px 7px 7px;
     background: var(--color-primary);
 
-    h1 {
+    img {
+      width: 200px;
+    }
+
+    @media (min-width: 1450px) {
+      height: 200px;
+      img {
+        width: 250px;
+      }
+    }
+
+    .link {
+      width: 100%;
       display: flex;
-      gap: 7px;
-      align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+      margin: 0;
+      padding: 0;
+    }
 
-      font-style: normal;
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 48px;
-
-      width: 245px;
-      height: 55px;
-      padding-top: 3.5rem;
-
-      color: #ffff;
-      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-      cursor: default;
+    a {
+      padding: 0;
+      margin: 0;
     }
   }
 
   aside {
     display: flex;
-    gap: 7px;
+    gap: 9px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     width: 198px;
     height: 249px;
-
     border-radius: 10px;
     color: var(--white);
     background: var(--color-primary);
@@ -67,6 +66,13 @@ export const Container = styled.div`
     span {
       padding: 2px;
       font-size: 16px;
+    }
+  }
+  @media (min-width: 1450px) {
+    aside {
+      width: 20%;
+      height: 60%;
+      padding: 1rem;
     }
   }
 `;
@@ -86,8 +92,8 @@ export const Main = styled.main`
 
   .menu {
     display: flex;
-    gap: 3px;
-    max-height: 80px;
+    width: 95%;
+    gap: 4px;
     padding: 3px 5px;
     overflow: auto;
 
@@ -95,18 +101,14 @@ export const Main = styled.main`
       font-style: normal;
       font-weight: 700;
       font-size: 14px;
-      line-height: 17px;
-
-      height: 30px;
-      padding: 0px 1rem;
+      line-height: 19px;
+      height: 35px;
+      padding: 0px 1.3rem;
       white-space: nowrap;
-
       color: #ffff;
       background: var(--color-primary);
-
       border: none;
       border-radius: 5px;
-
       cursor: pointer;
     }
 
@@ -114,121 +116,169 @@ export const Main = styled.main`
       background: var(--color-hover);
     }
   }
+
+  @media (min-width: 530px) {
+    .menu {
+      justify-content: center;
+    }
+  }
+
   .search-bar {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
   }
+
   .search-bar h3 {
-    display: flex;
-    align-content: center;
+    margin-bottom: 2rem;
+    font-size: 26px;
+    color: var(--grey-1);
   }
-  .search-bar div {
-    font-size: 20px;
+
+  .search-bar > .divInput {
     height: 43px;
     display: flex;
     align-items: center;
-    padding-bottom: 20px;
-  }
-  .search-bar div input {
-    font-size: 18px;
-    width: 120px;
-    border: none;
-    border-radius: 4px 0 0 4px;
-    padding: 5px;
+    padding-bottom: 30px;
+    border-radius: 40px;
     background-color: var(--grey-2);
+    padding: 10px;
   }
-  .search-bar div svg {
-    width: 43px;
-    height: 31px;
-    color: var(--white);
-    border-radius: 0px 4px 4px 0px;
+
+  .search-bar:hover > .divInput > input {
+    font-size: 15px;
+    width: 240px;
+    border-radius: 4px 0 0 4px;
+    padding: 0 6px;
+  }
+
+  .search-bar:hover > .divInput > svg {
     background-color: var(--color-hover);
+    margin-left: 3px;
+  }
+
+  .divInput > svg {
+    float: right;
+    width: 35px;
+    height: 35px;
+    color: var(--white);
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+    transition: 0.4s;
+  }
+
+  .divInput > input {
+    border: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: #fff;
+    font-size: 14px;
+    transition: 0.4s;
+    line-height: 40px;
+    background-color: transparent;
+    cursor: pointer;
   }
 
   .pet-box {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    max-width: 750px;
-    width: 93%;
-    padding: 1rem;
-
+    align-items: center;
+    max-width: 900px;
+    width: 95%;
+    padding: 2.3rem;
     border-radius: 10px;
     background: #ffff;
 
-    h3 {
-      font-size: 20px;
-      margin-bottom: 1.5rem;
-    }
-
-    p {
-      font-size: 18px;
+    .pet-box > h3 {
+      font-size: 26px;
+      margin-bottom: 2.5rem;
+      padding: 1rem;
     }
 
     .titles {
-      display: flex;
       width: 100%;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #000;
-    }
-    .list-pet {
-      width: 30%;
       display: flex;
-      align-items: center;
+      padding-bottom: 1.5rem;
+      margin-top: 1.5rem;
+      border-bottom: 1px solid #000;
+      color: var(--grey-1);
     }
+
+    .list-pet {
+      width: 15%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .list-animal {
       width: 35%;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       overflow: hidden;
-      display: flex;
-      align-items: flex-start;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
+
     .list-newPet {
-      width: 20%;
-      display: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
+
     .list-vaccine {
-      display: none;
-      width: 10%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
+
     .list-edit {
-      width: 27%;
-      display: flex;
-      justify-content: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
+
     .buttons-add {
-      width: 35%;
+      width: 50%;
       display: flex;
       justify-content: center;
     }
+
     .buttons-add svg {
       color: var(--color-primary);
     }
-    .pet-box .buttons-add {
+
+    .buttons-add {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .add-pets {
       width: 20%;
     }
-    .buttons-add .add-pets {
-      display: none;
-      margin-left: 5px;
+
+    .add-vaccine {
+      width: 20%;
     }
-    .buttons-add .add-vaccine {
-      display: none;
+
+    .add-consults {
+      width: 20%;
     }
-    .buttons-add .add-consults {
-      margin-right: 9%;
-    }
+
     .pet-data {
       width: 100%;
+      font-size: 14px;
 
       .data {
         display: flex;
         align-items: center;
-
-        padding: 2rem 0px;
+        justify-content: space-between;
+        padding: 0.5rem 0px;
         border-bottom: 1px solid #000;
 
         .buttons {
@@ -248,76 +298,34 @@ export const Main = styled.main`
           cursor: pointer;
         }
       }
+    }
+  }
 
-      p {
-        font-size: 16px;
-      }
-    }
-  }
-  @media (max-width: 450px) {
-    .list-animal {
-      max-width: 15ch;
-    }
-  }
-  @media (min-width: 700px) {
-    .pet-box .list-newPet {
-      display: flex;
-      align-items: flex-start;
-    }
-    .pet-box .list-animal {
-      max-width: none;
-      white-space: normal;
-      overflow: auto;
-      display: flex;
-      align-items: flex-start;
-    }
-    .pet-box .list-vaccine {
-      display: block;
-    }
-    .pet-box .list-edit {
-      align-items: flex-end;
-      justify-content: flex-end;
-    }
-    .pet-box .buttons-add {
-      width: 60%;
-      justify-content: space-between;
-    }
-    .pet-box .buttons-add .add-pets {
-      display: block;
-      margin-left: 1%;
-    }
-    .search-bar div input {
-      width: 150px;
-    }
-    .pet-box .buttons-add .add-vaccine {
-      display: block;
-    }
-  }
-  @media (min-width: 1203px) {
+  @media (min-width: 1450px) {
     justify-content: space-between;
     flex-wrap: nowrap;
-
     margin-top: 1.5rem;
     margin-right: 1.5rem;
 
     .menu {
       flex-direction: column;
       align-items: flex-start;
+      justify-content: flex-start;
       gap: 1rem;
       max-height: 100vh;
       height: 100vh;
-      width: 238px;
-      padding: 1.3rem 0.5rem;
-
+      width: 20%;
+      padding: 1.3rem 1rem;
       border-radius: 0px 10px 10px 0px;
       background: var(--color-primary);
 
       button {
+        margin: 1rem 1rem 0.2rem 1rem;
         font-size: 20px;
         line-height: 24px;
       }
 
-      button:hover {
+      .menu > button:hover {
         text-decoration: underline;
         background: inherit;
       }
