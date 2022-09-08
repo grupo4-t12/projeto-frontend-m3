@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
 
   width: 100%;
   min-height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -54,6 +54,11 @@ export const ModalBoxVaccines = styled.div`
     margin-bottom: 1rem;
   }
 
+  p {
+    color: var(--grey-1);
+    margin-bottom: 0.5rem;
+  }
+
   .list {
     display: flex;
     flex-direction: column;
@@ -64,7 +69,6 @@ export const ModalBoxVaccines = styled.div`
       font-size: 18px;
       line-height: 22px;
       color: var(--grey-1);
-      cursor: pointer;
     }
 
     span {

@@ -36,7 +36,7 @@ function DashboardClinic() {
   function searchUser(inputValue: string) {
     setFilteredUsers(
       listUsers.filter((element) =>
-        element.name.toLowerCase().includes(inputValue.toLowerCase())
+        element.name.toLowerCase().includes(inputValue.toLocaleLowerCase())
       )
     );
   }
@@ -96,12 +96,9 @@ function DashboardClinic() {
                 onChange={(event) => {
                   setSearch(event.target.value);
                 }}
+                onKeyUp={() => searchUser(search)}
               />
-              <IoSearch
-                onClick={() => {
-                  searchUser(search);
-                }}
-              />
+              <IoSearch />
             </div>
           </div>
           <div className="titles">
