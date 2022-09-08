@@ -103,10 +103,10 @@ function DashboardClinic() {
           </div>
           <div className="titles">
             <p className="list-pet">Cliente</p>
-            <p className="list-animal">E-mail</p>
-            <p className="add-pets list-newPet">Pets</p>
-            <p className="add-vaccine list-vaccine">Vacinas</p>
-            <p className="add-consults list-edit ">Consultas</p>
+            <p className="list-email">E-mail</p>
+            <p className="list-newPet">Pets</p>
+            <p className="list-vaccine">Vacinas</p>
+            <p className=" list-edit ">Consultas</p>
           </div>
           <div className="pet-data">
             {filteredUsers.length !== 0 ? (

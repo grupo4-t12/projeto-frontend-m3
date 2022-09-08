@@ -70,10 +70,12 @@ export const Container = styled.div`
     }
   }
   @media (min-width: 1450px) {
+    img {
+      width: 100%;
+    }
     aside {
-      width: 20%;
-      height: 60%;
-      padding: 1rem;
+      width: 220px;
+      height: 280px;
     }
   }
 `;
