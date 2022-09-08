@@ -26,7 +26,7 @@ function ClientConsult() {
     <Container>
       <Toaster position="top-right" reverseOrder={true} />
       <header>
-      <div className="containerHeader">
+        <div className="containerHeader">
           <div className="header">
             <img
               src={logo}
@@ -64,13 +64,16 @@ function ClientConsult() {
             <p className="list-pet">Pet</p>
           </div>
           <div className="consult-data">
-            {listConsults.map((consult) => (
-              <div className="data" key={consult.id}>
-                <p className="list-procedure">{consult.procedimento}</p>
-                <p className="list-animal">{consult.animal}</p>
-                <p className="list-pet">{consult.pet}</p>
-              </div>
-            ))}
+            {listConsults
+              .slice()
+              .reverse()
+              .map((consult) => (
+                <div className="data" key={consult.id}>
+                  <p className="list-procedure">{consult.procedimento}</p>
+                  <p className="list-animal">{consult.animal}</p>
+                  <p className="list-pet">{consult.pet}</p>
+                </div>
+              ))}
           </div>
         </div>
         <aside>
